@@ -7,7 +7,7 @@
 		"args": ["-g",
 			"${file}",
 			"-o",
-			"${workspaceFolder}/src/${fileBasenameNoExtension}.o",
+			"${workspaceFolder}/src/main.o",
 			"-lGL",
 			"-lGLU", 
 			"-lSDL2main",

@@ -8,16 +8,31 @@ The project contains json format config files (launch/tasks/c_cpp_properties/set
 VS Code workspace file. The Windows version has the '_win' suffix (before the json extension)
 If working in Windows, remove or rename the base files, remove '_win' and adjust for your setup 
 where necessary.
+These .vscode files are understood by VS Code and they are useful for building and debugging.
+Users will need to tweak these files for their local setup, although they are quite standard
+* tasks.json            : This contains instructions for VS Code to compile the source file(s)
+* launch.json           : This is equivalent to main menu Run - Start Debugging (or clicking F5)
+* c_cpp_properties.json : This a newer format file for further workspace/folder/project settings
 
-The project requires the following:
+The project requires the following libraries:
 * OpenGL - Graphics rendering
-* OpenCL - For COmpute operations
+* OpenCL - For Compute operations
 * SDL2 - For Screen and user interaction
 * SDL2_Image - For manipulating images
 * glu.h - OpenGL helper header. Usually already present in the include/GL folder
 Installing these will be different on different platfroms. Usually there will be an SDK 
 which can be installed but may already exist on the development machine.
 
+## Extensions for VS code
+VS Code has a host of helpful extensions available. For this project, some recommended ones are
+here. To download them in the terminal, copy the 'ext...' command into the terminal and enter. Or
+install them by clicking on the extensions VS Code menu item and searching
+* C/C++ (Cpp Tools)         : ext install ms-vscode.cpptools
+* C/C++ Extension Pack      : ext install ms-vscode.cpptools-extension-pack
+* OpenCL (author galarius)  : ext install galarius.vscode-opencl
+* GitHuib Markdown Preview  : ext install bierner.github-markdown-preview
+
+# OS specific instructions
 
  ## WINDOWS (64-bit)
 (For Win32 substitute MinGW-64 for MinGW)
