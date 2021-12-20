@@ -202,7 +202,6 @@ int main( int argc, char* args[] )
                 }
 			}
 		}
-		SDL_StopTextInput();
 	}
     
 	close();
@@ -535,7 +534,6 @@ bool getOpenClContext()
     #ifdef __APPLE__
         CGLContextObj glContext = CGLGetCurrentContext();
         CGLShareGroupObj shareGroup = CGLGetShareGroup(glContext);
-
         cl_context_properties properties[] = {
         CL_CONTEXT_PROPERTY_USE_CGL_SHAREGROUP_APPLE,
         (cl_context_properties)shareGroup,
@@ -564,9 +562,9 @@ bool getOpenClContext()
         0};
     #endif
 
-    // ################################
+    // #####################################
     // ### END Platform Independent Context
-    // ################################ 
+    // ##################################### 
 
     // Finally we can create the shared context
     g_clContext = clCreateContextFromType(properties, CL_DEVICE_TYPE_GPU, NULL, NULL, &status);
