@@ -1,4 +1,4 @@
-#define CL_TARGET_OPENCL_VERSION 300
+#define CL_TARGET_OPENCL_VERSION 120
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 #if defined __APPLE__
@@ -27,7 +27,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <string>
-#include <sys/timeb.h>
+#include <sys/time.h>
 #include <fstream>
 
 #define MAX_KERNEL_SIZE (0x100000)
@@ -102,7 +102,7 @@ bool gRenderQuad = true;
 int main( int argc, char* args[] )
 {
     double dx = 7.0f;
-    double dy = 88.5f;
+    double dy = 88.5f; 
 	//Start up SDL and create window
 	if( !init() )
 	{
@@ -366,8 +366,10 @@ static bool UpdateKernelArgsRewriteImage()
 {
     cl_int status = CL_SUCCESS;
 
-    // Start timer
-    int start = getMilliCount();
+    struct timeval tvalBefore;
+    struct  timeval tvalAfter;
+
+    gettimeofday(&tvalBefore, NULL);
 
     // Arguments for the kernel using their index
     status = clSetKernelArg( kernel, 0, sizeof(cl_mem), &writeToImage );
@@ -392,7 +394,8 @@ static bool UpdateKernelArgsRewriteImage()
     clWaitForEvents( 1, &event[2] );
     clFinish(commands);
 
-    cl_uint milliSecondsElapsed = getMilliSpan(start);
+    gettimeofday(&tvalAfter, NULL);
+    uint milliSecondsElapsed = (uint)((tvalAfter.tv_usec - tvalBefore.tv_usec) / 1000); 
     printf( "\n\nTime to create Mandelbrot = %u milliseconds\n", milliSecondsElapsed );
 
     return true;
@@ -843,16 +846,4 @@ static void exitOnFail(const char * const msg, cl_int sts)
          return;
     printf("Error at %s: %s\n", msg, clerror(sts));
     exit(1);
-}
-static cl_uint getMilliCount()
-{
-    timeb tb;
-    ftime(&tb);
-    cl_uint nCount = tb.millitm + (tb.time & 0xfffff) * 1000;
-    return nCount;
-}
-static cl_uint getMilliSpan(cl_uint nTimeStart)
-{
-    cl_uint nSpan = getMilliCount() - nTimeStart;
-    return nSpan;
 }
