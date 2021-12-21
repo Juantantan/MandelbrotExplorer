@@ -1,11 +1,11 @@
 # Explicit folders & files
 
-screenshots/
-include/
-bin/debug/
-bin/release/
+screenshots/*
+include/*
+bin/debug/*
+bin/release/* 
 lib/
-.vscode/
+.vscode/*
 
 *.txt
 # Prerequisites
