@@ -145,8 +145,8 @@ int main( int argc, char* args[] )
                             // we want to zoom in *2, centred on Mouse-Click Coordinates
                             dx = (double)e.button.x;
                             dy = (double)e.button.y;
-                            printf("Left Mouse clicked; x = %f pixels. ", dx);
-                            printf("y = %f pixels\n", dy);
+                            printf("Left Mouse clicked; x = %i pixels. ", (int)dx);
+                            printf("y = %i pixels\n", (int)dy);
                             midX = minX + dx / FRACTAL_IMAGE_WIDTH * dblXrange;
                             midY = minY + dy / FRACTAL_IMAGE_HEIGHT * dblYrange;
                             dblXrange = dblXrange / 2;
@@ -173,8 +173,8 @@ int main( int argc, char* args[] )
                             // zoom out * 0.5
                             dx = (double)e.button.x;
                             dy = (double)e.button.y;
-                            printf("Right Mouse clicked; x = %f pixels. ", dx);
-                            printf("y = %f pixels\n", dy);
+                            printf("Right Mouse clicked; x = %i pixels. ", (int)dx);
+                            printf("y = %i pixels\n", (int)dy);
                             midX = minX + dx / FRACTAL_IMAGE_WIDTH * dblXrange;
                             midY = minY + dy / FRACTAL_IMAGE_HEIGHT * dblYrange;
                             dblXrange = dblXrange / 0.5;
