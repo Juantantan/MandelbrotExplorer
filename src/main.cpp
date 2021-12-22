@@ -37,7 +37,6 @@ const int WINDOW_HEIGHT = 1024;
 
 bool init();
 bool initOpenGL();
-void handleKeyPress( unsigned char key, int x, int y );
 
 // Renders quad to the screen
 void renderGLQuad();
@@ -53,7 +52,7 @@ static bool UpdateKernelArgsRewriteImage();
 
 static const unsigned int FRACTAL_IMAGE_WIDTH  = 1024;
 static const unsigned int FRACTAL_IMAGE_HEIGHT = 1024;
-static const unsigned int FRACTAL_IMAGE_SIZE   = FRACTAL_IMAGE_WIDTH * FRACTAL_IMAGE_HEIGHT; // in pixels (ans texels if 1:1)
+static const unsigned int FRACTAL_IMAGE_SIZE  = FRACTAL_IMAGE_WIDTH * FRACTAL_IMAGE_HEIGHT; // pixels (& texels if 1:1)
 static const size_t GWSize[]= {FRACTAL_IMAGE_WIDTH, FRACTAL_IMAGE_HEIGHT, 1};
 static const size_t LocalWorkSize[3] = { 32, 32, 1 };
 
@@ -101,7 +100,7 @@ int main( int argc, char* args[] )
 
     /* From khronos: "An OpenCL memory object must be created after the corresponding OpenGL VBO has been created,
     but before the OpenGL rendering starts". 
-        This is the crux of how SDL/OpenGL and OpenGL communicate. It requires some careful thought and understanding */
+      This is the crux of how SDL/OpenGL and OpenGL communicate. It requires some careful thought and understanding */
 
 	//Start up SDL and create window
 	if( !init() )
@@ -113,7 +112,7 @@ int main( int argc, char* args[] )
 		//Main loop flag
 		bool quit = false;
         UpdateKernelArgsRewriteImage();
-        renderGL();
+        renderGLQuad();
         //Update screen
         SDL_GL_SwapWindow( glWindow );;
 		SDL_Event e;
@@ -164,7 +163,7 @@ int main( int argc, char* args[] )
                             lZoomFactor *=2;
                             printf("Zoom factor= %llu \n", lZoomFactor);
                             UpdateKernelArgsRewriteImage();
-                            renderGL();
+                            renderGLQuad();
                             //Update screen
                             SDL_GL_SwapWindow( glWindow );;
                             break;
@@ -192,7 +191,7 @@ int main( int argc, char* args[] )
                             lZoomFactor *=0.5;
                             printf("Zoom factor= %llu \n", lZoomFactor);
                             UpdateKernelArgsRewriteImage();
-                            renderGL();
+                            renderGLQuad();
 
                             //Update screen
                             SDL_GL_SwapWindow( glWindow );;
