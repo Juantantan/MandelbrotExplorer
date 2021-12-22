@@ -1,4 +1,4 @@
-# Mandelbrot explorer with GL/CL Interoperability
+# Mandelbrot explorer with OpenGL/OpenCL Interoperability
 Mandelbrot explorer uses OpenGL/OpenCL interoperability to leverage the raw compute power of OpenCL
 with the powerful graphics of OpenGL. 
 The program was written and built using Code::Blocks & Microsoft VS Code. The source codebase
