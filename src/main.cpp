@@ -1,6 +1,7 @@
 #define CL_TARGET_OPENCL_VERSION 120
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
+#include <SDL2/SDL_image.h>
 #if defined __APPLE__
     #include <OpenGL/gl.h>
     #include <OpenGL/glu.h>
@@ -22,8 +23,6 @@
     #endif
 #endif 
 
-/* An OpenCL memory object must be created after the corresponding OpenGL VBO has been created,
-    but before the OpenGL rendering starts */
 #include <stdio.h>
 #include <string.h>
 #include <string>
@@ -40,10 +39,9 @@ bool init();
 bool initOpenGL();
 void handleKeyPress( unsigned char key, int x, int y );
 
-// Per frame update
-void update();
 // Renders quad to the screen
-void renderGL();
+void renderGLQuad();
+
 // Frees media and shuts down SDL
 void close();
 
@@ -52,9 +50,6 @@ static void exitOnFail(const char * const msg, cl_int sts);
 static bool getOpenClContext();
 static bool buildProgramCreateKernel();
 static bool UpdateKernelArgsRewriteImage();
-
-static cl_uint getMilliCount( );
-static cl_uint getMilliSpan(cl_uint);
 
 static const unsigned int FRACTAL_IMAGE_WIDTH  = 1024;
 static const unsigned int FRACTAL_IMAGE_HEIGHT = 1024;
@@ -103,6 +98,11 @@ int main( int argc, char* args[] )
 {
     double dx = 7.0f;
     double dy = 88.5f; 
+
+    /* From khronos: "An OpenCL memory object must be created after the corresponding OpenGL VBO has been created,
+    but before the OpenGL rendering starts". 
+        This is the crux of how SDL/OpenGL and OpenGL communicate. It requires some careful thought and understanding */
+
 	//Start up SDL and create window
 	if( !init() )
 	{
@@ -212,7 +212,7 @@ bool init()
 {
 	bool success = true;
 
-	//Initialize SDL
+	// Initialize SDL
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
 	{
 		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
@@ -253,8 +253,7 @@ bool init()
                     printf( "Error: Initialisation function buildProgramCreateKernel failed\n" );
                     success = false;
                 }
-
-				//Initialize OpenGL
+				// Initialize OpenGL
 				if( !initOpenGL() )
 				{
 					printf( "Unable to initialize OpenGL!\n" );
@@ -321,9 +320,8 @@ bool initOpenGL()
 
 	return success;
 }
-void renderGL()
+void renderGLQuad()
 {
-	//Clear color buffer
 	glClear( GL_COLOR_BUFFER_BIT );
 
 	if( gRenderQuad )
@@ -371,7 +369,7 @@ static bool UpdateKernelArgsRewriteImage()
 
     gettimeofday(&tvalBefore, NULL);
 
-    // Arguments for the kernel using their index
+    // Send / update kernel arguments
     status = clSetKernelArg( kernel, 0, sizeof(cl_mem), &writeToImage );
     exitOnFail("clSetKernelArg 0", status);
     status = clSetKernelArg( kernel, 1, sizeof(double), &minX );
@@ -657,7 +655,7 @@ static bool IsCLExtensionSupported( const char *extension )
 }
 static const char *clerror(cl_int const status)
 {
-    const char * definedError = "Error copde not found";
+    const char * definedError = "Error code not found";
     switch (status)
     {
         case CL_INVALID_GL_OBJECT:

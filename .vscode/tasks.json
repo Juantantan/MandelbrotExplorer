@@ -1,31 +1,30 @@
 {
+	"version": "2.0.0",
 	"tasks": [
 	  {
 		"type": "shell",
 		"label": "g++ build active file",
 		"command": "/usr/bin/g++",
-		"args": ["-g",
+		"args": [
+			"-g",
 			"${file}",
 			"-o",
-			"${workspaceFolder}/src/main.o",
+			"${workspaceFolder}/bin/main.out",
+			"-lSDL2main",
+			"-lSDL2",
+			"-lSDL2_image",
 			"-lGL",
 			"-lGLU", 
-			"-lSDL2main",
-			"-lSDL2", 
-			"-lSDL2_image",
-			"-lOpenCL" 
-			],
-			"options": {
-				"cwd": "/usr/bin"
-			},
-			"problemMatcher": ["$gcc"],
-			"group": {
-			  "kind": "build",
-			  "isDefault": true
-			},
-		"detail": "compiler: /usr/bin/gcc"
+			"-lOpenCL" ],
+		"options": {
+		  "cwd": "/usr/bin"
+		},
+		"problemMatcher": ["$gcc"],
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
+		}
 	  }
-	],
-	"version": "2.0.0"
+	]
   }
-  
+    
