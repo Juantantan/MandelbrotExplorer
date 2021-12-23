@@ -1,3 +1,5 @@
+![Screenshot](/docs/images/rm-2.png)
+
 # Mandelbrot explorer with OpenGL/OpenCL Interoperability
 Mandelbrot explorer uses OpenGL/OpenCL interoperability to leverage the raw compute power of OpenCL
 with the powerful graphics of OpenGL. 
