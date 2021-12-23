@@ -1,11 +1,11 @@
-![Screenshot](/docs/images/rm-2.png)
-
 # Mandelbrot explorer with OpenGL/OpenCL Interoperability
 Mandelbrot explorer uses OpenGL/OpenCL interoperability to leverage the raw compute power of OpenCL
 with the powerful graphics of OpenGL. 
 The program was written and built using Code::Blocks & Microsoft VS Code. The source codebase
 consists of only 2 files, main.cpp and mandel.cl. 'main.cpp' is a standard C++ file and mandel.cl
 is an OpenCL kernel format file.
+
+![Screenshot](/docs/images/rm-2.png)
 
 The program could equally be run and compiled at the command line without an IDE but the
 extensions for VS Code make it very easy and pleasant to see what's going on, especillay with
