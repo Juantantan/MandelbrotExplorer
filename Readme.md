@@ -105,9 +105,11 @@ To install SDL2 and SDL2 Image with brew, follow instructions here:
 
 ## LINUX
 On linux, OpenCL, SDL2 and SDL2 Image are required and can be installed like this:
+https://learncgames.com/tutorials/how-to-install-sdl-on-linux/
+
 * sudo apt update
 * sudo apt install ocl-icd-opencl-dev
-* sudo apt-get install libsdl2-2.0
+* sudo apt install libsdl2-dev
 * sudo apt-get install libsdl2-image-2.0-0-dev
 
 GLU may or may not already exist. GLU is an older helper header file from early versions of OpenGL
