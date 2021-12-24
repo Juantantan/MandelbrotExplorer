@@ -1,4 +1,8 @@
 #define CL_TARGET_OPENCL_VERSION 120
+// GL 3.1 definitions
+#ifndef GL_VERSION_3_1
+    #define GL_VERSION_3_1 1
+#endif
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_image.h>
@@ -7,11 +11,11 @@
     #include <OpenGL/glu.h>
     #include <OpenCL/cl.h>
     #include <OpenCL/cl_gl.h>
-    // For Platform specific shared contexts of OpneGL/OpenCL (Interoperability)
-    #include <OpenCL/cl_gl_ext.h>
-    // Possibly also one or both of these below
-    #include <OpenGL/OpenGL.h>
-    #include <OpenCL/opencl.h>
+// For Platform specific shared contexts of OpneGL/OpenCL (Interoperability)
+#include <OpenCL/cl_gl_ext.h>
+// Possibly also one or both of these below
+#include <OpenGL/OpenGL.h>
+#include <OpenCL/opencl.h>
 #elif defined _WIN32 || defined _WIN64 || defined __unix__ || defined linux
     #include <GL/gl.h>
     #include <GL/glu.h>
@@ -225,9 +229,10 @@ bool init()
         // Use OpenGL 3.1
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
-
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+        
         // Create SDL window
-        glWindow = SDL_CreateWindow("Mandelbrot Explorer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+        glWindow = SDL_CreateWindow("Mandelbrot Explorer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS);
         if (glWindow == NULL)
         {
             printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -421,10 +426,11 @@ bool getOpenClContext()
 
     for (i = 0; i < num_platforms; i++)
     {
+        correctPlatformIndex = i;
         char platformVendor[10240];
         char platformVersion[10240];
-        clGetPlatformInfo(platforms[i], CL_PLATFORM_VENDOR, sizeof(platformVendor), platformVendor, NULL);
-        clGetPlatformInfo(platforms[i], CL_PLATFORM_VERSION, sizeof(platformVersion), platformVersion, NULL);
+        clGetPlatformInfo(platforms[correctPlatformIndex], CL_PLATFORM_VENDOR, sizeof(platformVendor), platformVendor, NULL);
+        clGetPlatformInfo(platforms[correctPlatformIndex], CL_PLATFORM_VERSION, sizeof(platformVersion), platformVersion, NULL);
         printf("PLATFORM_VENDOR = %s\n\t VERSION = %s\n", platformVendor, platformVersion);
 
         // If the Platform Vendor is AMD/NVIDIA/Intel (Change as appropriate for GPU or Intel if none)
@@ -447,7 +453,7 @@ bool getOpenClContext()
             printf("PlatformID: %s Platform Name: %s\n", __STRING(platforms[correctPlatformIndex]), s3);
             break;
         }
-        else if (strcmp(s1, s4) == 0)
+        if (strcmp(s1, s4) == 0)
         {
             correctPlatformIndex = i;
             platform = platforms[i];

@@ -1,10 +1,11 @@
 # Explicit folders & files
-screenshots/*
 include/*
 bin/debug/*
 bin/release/* 
 lib/
 .vscode/*
+src/compiler-args.txt
+bin/Mandel.cl
 
 *.txt
 # Prerequisites
@@ -39,5 +40,6 @@ lib/
 *.exe
 *.out
 *.app
+
 
 

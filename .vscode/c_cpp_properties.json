@@ -23,7 +23,7 @@
             "browse": {
                 "path": [
                     "${workspaceFolder}/include/",
-                    "${workspaceFolder}/lib/",
+                    // "${workspaceFolder}/lib/",
                     "${workspaceFolder}"
                 ],
                 "limitSymbolsToIncludedHeaders": true
