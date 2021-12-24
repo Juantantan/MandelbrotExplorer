@@ -10,6 +10,9 @@ is an OpenCL kernel format file.
 The program could equally be run and compiled at the command line without an IDE but the
 extensions for VS Code make it very easy and pleasant to see what's going on, especillay with
 debugging. If running with the command prompt, the linker flags will need to be set correctly.
+On linux, the following works. You might have to preceed with 'sudo':
+
+g++ main.cpp -Wall -lSDL2main -lSDL2 -lSDL2_image -lGL -lGLU -lglut -lOpenCL -o ../bin/main.out
 
 If using VS Code, your project can include local config files in json format:
 (launch.json/tasks.json/c_cpp_properties.json) and a VS Code workspace file. Basic ones are included 
@@ -121,3 +124,5 @@ Extra build args (in tasks.json):
 * "-lSDL2",       : SDL2
 * "-lSDL2_image", : SDL Image
 * "-lOpenCL"      : OpenCL
+
+![Screenshot](/docs/images/rm-3.png)
