@@ -1,5 +1,4 @@
 # Explicit folders & files
-screenshots/*
 include/*
 bin/debug/*
 bin/release/* 
