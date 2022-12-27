@@ -24,16 +24,16 @@ website for setting these up for your local deployment using the GNU debugger (g
 
 ## 3rd party requirements 
 The project requires the following libraries/source/headers:
-* OpenGL - Graphics rendering (may already be present by default on Linux and Apple OS)
-* OpenCL - For Compute operations (may already be present by default on Linux and Apple OS)
+* OpenGL - Graphics rendering (may already be present by default on Linux and Mac OS)
+* OpenCL - For Compute operations (may already be present by default on Linux and Mac OS)
 * SDL2 - For user / screen interaction (requires runtime library install and header)
 * SDL2_Image (optional) - For working with physical image files (requires header file include). 
   This is not strictly required unless physical images are being created from the raw image data
   sent to the screen in the base code.
   https://www.libsdl.org/
 * glu.h - OpenGL helper header file. (Usually already present in the include/GL folder)
-Installing these will be different on different platfroms. Usually there will be an SDK 
-which can be installed (certainly in Windows but this may already exist on the development machine.
+Installing these will be different on different platfroms. In Windows there will be an SDK 
+which can be installed but this may exist on the development machine in other OS.
 
 ### OpenCL notes
 The OpenCL specification is managed by Khronos Group. Khronos.org is an organisation of representatives
@@ -115,7 +115,7 @@ https://learncgames.com/tutorials/how-to-install-sdl-on-linux/
 * sudo apt install libsdl2-dev
 * sudo apt-get install libsdl2-image-2.0-0-dev
 
-GLU may or may not already exist. GLU is an older helper header file from early versions of OpenGL
+As stated above, GLU may or may not already exist. GLU is an older helper header file from early versions of OpenGL
 
 Extra build args (in tasks.json):
 * "-lGL",         : OpenGL
