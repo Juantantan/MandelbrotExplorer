@@ -1,12 +1,45 @@
 # Mandelbrot explorer with OpenGL/OpenCL Interoperability
 Mandelbrot explorer uses OpenGL/OpenCL interoperability to leverage the raw compute power of OpenCL
 with the OpenGL display layer. It renders colourful, detailed images from pixel maps formed by iterating through 
-the Mandelbrot algorithm and shading each pixel based on the number of iterations each pixel coordinate in the 
-imaginary plane takes to excape the mandelbrot set. You can zoom in and out and alter the 'kernel' file, which is
-written to your Graphics hardware (GPU / CPU /...). At the time of writing, there was very little open source code
-available on the web which demonstrated OpenCL / OpenGL interoperability. This is important because it's all very
-well producing an image map but displaying it to screen has to be done to enjoy the image visually. There really 
-aren't very many OpenCL offerings when compared to OpenGL and very, very little which combines the two APIs. 
+the Mandelbrot algorithm and 'shading' each pixel based on the number of iterations each pixel coordinate value in the 
+imaginary plane takes to escape the mandelbrot set. You can zoom in and out and alter the 'kernel' file, which is
+written to your Graphics hardware (GPU / CPU /...). User interaction (zooming) is done via the 3rd party SDL2 library.
+
+At the time of writing, there was very little open source code available on the web which demonstrated OpenCL/OpenGL
+interoperability. This is important because it's all very well producing an image map but displaying it to screen has
+to be done to enjoy the image visually. There aren't very many OpenCL offerings when compared to OpenGL and very,
+very little which combines the two APIs. 
+
+## Mentions and thanks
+Although I wrote a very simple Mandelbrot set visualiser in Visual Basic 6 in 2003, it was just for a bit of fun and very 
+slow!
+# Eric Bainville
+A few years later, I did a search on rendering the Mandelbrot set and how others had done that. I stumbled upon the 
+excellent and extensive work done by Eric Bainville. My initial implementation using OpenCL was largely a copy-and-paste job
+of Eric's work and without that, which still forms the central core of the OpenCL core, I probably could not have done anything
+more. I think I am right in remembering that Eric also used SDL in his implementation.
+Eric has a web site here: http://www.bealto.com/cv.html
+
+# Mark Brown
+Mark was a very good friend of mine at school and is a very capable programmer. His lovely father was my geography teacher. 
+Mark can (quote): 'get by in 20 or so' programming languages, which, as far as I can tell, actually means he is highly proficient,
+expressed with the wonderful humility that experts in their field often seem to have.
+When I got a recent version of this software to run some years ago, I passed a copy to Mark and he was kind enough to go through
+it and offer advice. In particular, he tidied up my poorly executed OpenCL error-handling method and sent that back to me. 
+He also commented on various aspects of what I was trying to do and opened me up to other languages and techniques, such as 
+functional programming. Mark has written web guides for using Erlang, OpenGL with Lisp, OpenSSH, encryption and security and on
+many other subjects. Software engineering is currently my job but I do this in a limited capacity. Mark is an expert in many
+fields and has had a formal tertiary education, and gone on to study further under some eminent and revered scholars. 
+
+# Richard Garnett and Jack Costin
+Richard and Jack have been colleagues of mine at my work. I owe then so much thanks for their patience when I was slowly 
+learning Python and Postgre Sql. Their precision and thoroughness helped to teach me to bring my PR's up to an acceptable 
+quality. Jack wrote some really good stuff in the Rust language, which hugely speeded up some slower bits of code. I started 
+to try and use a Rust wrapper early on in this project but I stopped there. At the time, the wrapper was a work in progress 
+and most people were still ploughing on with C or C++ to do parallel programming with OpenCL. For those interested, one key
+quality of Rust is that it can be seen as a successful attempt at simplifying the environment for writing the type of
+low-level code which people have used C and C++ for over the last few decades. Maybe in some ways, it is a lanaguage
+for today, built with the benefit of hindsight of other, older low-level languages.
 
 ## OpenCl
 OpenCL is very good for doing parallel, recursive compute operations on graphics hardware, which often have thousands
