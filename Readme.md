@@ -13,14 +13,14 @@ very little which combines the two APIs.
 ## Mentions and thanks
 Although I wrote a very simple Mandelbrot set visualiser in Visual Basic 6 in 2003, it was just for a bit of fun and very 
 slow!
-# Eric Bainville
+### Eric Bainville
 A few years later, I did a search on rendering the Mandelbrot set and how others had done that. I stumbled upon the 
 excellent and extensive work done by Eric Bainville. My initial implementation using OpenCL was largely a copy-and-paste job
 of Eric's work and without that, which still forms the central core of the OpenCL core, I probably could not have done anything
 more. I think I am right in remembering that Eric also used SDL in his implementation.
 Eric has a web site here: http://www.bealto.com/cv.html
 
-# Mark Brown
+### Mark Brown
 Mark was a very good friend of mine at school and is a very capable programmer. His lovely father was my geography teacher. 
 Mark can (quote): 'get by in 20 or so' programming languages, which, as far as I can tell, actually means he is highly proficient,
 expressed with the wonderful humility that experts in their field often seem to have.
@@ -31,7 +31,7 @@ functional programming. Mark has written web guides for using Erlang, OpenGL wit
 many other subjects. Software engineering is currently my job but I do this in a limited capacity. Mark is an expert in many
 fields and has had a formal tertiary education, and gone on to study further under some eminent and revered scholars. 
 
-# Richard Garnett and Jack Costin
+### Richard Garnett and Jack Costin
 Richard and Jack have been colleagues of mine at my work. I owe then so much thanks for their patience when I was slowly 
 learning Python and Postgre Sql. Their precision and thoroughness helped to teach me to bring my PR's up to an acceptable 
 quality. Jack wrote some really good stuff in the Rust language, which hugely speeded up some slower bits of code. I started 
