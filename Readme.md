@@ -50,14 +50,18 @@ When I first wrote a fractal explorer, it was done in Visual Basic. I then rewro
 versions would use the CPU and were very slow, taking a few seconds to generate a ~4Mb bitmap. When the program was
 written using an OpenCL kernel and a modest dedicated GPU, it could generate the same image in the region of 400 times
 faster than on the dual core CPU used previously. That equates to millions of iterations being completed for a fairly large
-pixel map in just a few milliseconds. The interoperability with OpenGL allowed the image maps to be dsiplaced straight to a
+pixel map in just a few milliseconds. The interoperability with OpenGL allows the image maps to be dsiplayed straight to a
 screen, not having to be written to an image file to be opened later.
 The key to understanding why this type of implementation works so well for rendering images using the mandelbrot set is that
 because the madlebrot algorithm is highly recursive and each recursion only requires a very small processor, you can spread
 the load into 'work groups' over the hundreds or thousands of tiny processors available on modern GPU hardware. The kernel
 code compiles to the GPU itself and a 'swap buffer', which passes the image map to the peripheral C++ code and on to the 
-display only runs once each time a complete fractal is generated. The interactive 'SDL2' layer listens for keypress or
-mouse events, allowing you to zoom in and out of a mandelbrot rendition.
+display only runs once each time a complete fractal is generated. OpenCL can be used for many parallel programming
+applications, especially those which are highly recursive, such as software used to generate moleculses and sequences
+for finding possible medical applications. 
+The interactive 'SDL2' layer listens for keypress or mouse events, allowing you to zoom in and out of a mandelbrot
+rendition. There are many other possible libraries which could be used. I used SDL because it is very easy to set up and
+very simple to use to intercept realtime hardware events.
 
 The base program was orginally written and built using Code::Blocks IDE but the current version was written using 
 Microsoft VS Code. The source codebase consists of only 2 files, 'main.cpp' and 'mandel.cl'. These are what are 
