@@ -176,7 +176,7 @@ install them by clicking on the extensions VS Code menu item and searching
 # OS specific instructions
 
  ## WINDOWS (64-bit)
-(For Win32 substitute MinGW-64 for MinGW)
+(For Win32 substitute MinGW for MinGW-64)
 In windows, the project is most easily developed using the MinGW-64 gcc runtime:
 This can be installed from the MSYS2 terminal. Instructions here: https://www.msys2.org/
 You will also need the glu library and header. GLU is included as part of specific OS OpenGL implementations.
