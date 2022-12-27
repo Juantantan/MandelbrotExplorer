@@ -16,7 +16,7 @@ slow!
 ### Eric Bainville
 A few years later, I did a search on rendering the Mandelbrot set and how others had done that. I stumbled upon the 
 excellent and extensive work done by Eric Bainville. My initial implementation using OpenCL was largely a copy-and-paste job
-of Eric's work and without that, which still forms the central core of the OpenCL core, I probably could not have done anything
+of Eric's work and without that, which still forms the central core of the OpenCL part, I probably could not have done anything
 more. I think I am right in remembering that Eric also used SDL in his implementation.
 Eric has a web site here: http://www.bealto.com/cv.html
 
