@@ -1,20 +1,53 @@
 # Mandelbrot explorer with OpenGL/OpenCL Interoperability
 Mandelbrot explorer uses OpenGL/OpenCL interoperability to leverage the raw compute power of OpenCL
-with the OpenGL display layer. 
-The program was oroginally written and built using Code::Blocks but the current version was written using 
-Microsoft VS Code. The source codebase consists of only 2 files, 'main.cpp' and 'mandel.cl'. 'main.cpp'
-is a standard C++ file and 'mandel.cl' is an OpenCL kernel format file, which can be modified by the user using a
-standard text editor to alter fractal appearance and complexity. The kernel performs parallel, recursive iterations
-of a Mandelbrot algorithm. The kernel is written to the Grpahics hardware at compilation and returns complete
-fractal RGBA pixel maps at each rendition: on program start and at each click event (zoom in / zoom out) performed 
-by the user. 
+with the OpenGL display layer. It renders colourful, detailed images from pixel maps formed by iterating through 
+the Mandelbrot algorithm and shading each pixel based on the number of iterations each pixel coordinate in the 
+imaginary plane takes to excape the mandelbrot set. You can zoom in and out and alter the 'kernel' file, which is
+written to your Graphics hardware (GPU / CPU /...). At the time of writing, there was very little open source code
+available on the web which demonstrated OpenCL / OpenGL interoperability. This is important because it's all very
+well producing an image map but displaying it to screen has to be done to enjoy the image visually. There really 
+aren't very many OpenCL offerings when compared to OpenGL and very, very little which combines the two APIs. 
+
+## OpenCl
+OpenCL is very good for doing parallel, recursive compute operations on graphics hardware, which often have thousands
+of very small processors and banks of local memory at various group levels. OpenCL is used to do the 'raw maths'. 
+
+When I first wrote a fractal explorer, it was done in Visual Basic. I then rewrote it in C# some years later. Both
+versions would use the CPU and were very slow, taking a few seconds to generate a ~4Mb bitmap. When the program was
+written using an OpenCL kernel and a modest dedicated GPU, it could generate the same image in the region of 400 times
+faster than on the dual core CPU used previously. That equates to millions of iterations being completed for a fairly large
+pixel map in just a few milliseconds.
+The key to understanding why this type of implementation works so well for rendering images using the mandelbrot set is that
+because the madlebrot algorithm is highly recursive and each recursion only requires a very small processor, you can spread
+the load into 'work groups' over the hundreds or thousands of tiny processors available on modern GPU hardware. The kernel
+code compiles to the GPU itself and a 'swap buffer', which passes the image map to the peripheral C++ code and on to the 
+display only runs once each time a complete fractal is generated. The interactive 'SDL2' layer listens for keypress or
+mouse events, allowing you to zoom in and out of a mandelbrot rendition.
+
+The base program was orginally written and built using Code::Blocks IDE but the current version was written using 
+Microsoft VS Code. The source codebase consists of only 2 files, 'main.cpp' and 'mandel.cl'. These are what are 
+offered under the GNU license. All other information is offered only to help others to get an environment up and
+running and people are advised to read about these parts themselves. All links and information are given to provide
+a little help to get a fully functional, open source implementation of mandelbrot visualisations to render to your 
+monitor. Please do refer to all 3rd party open source offerings for yourself, as links may cease to work and what 
+little knowledge provided on the subject of parallel computing is very limited. The subject is huge and this code 
+is offered only to help people to get started withoiut too much fuss. If that first step works, people are encouraged
+to experiment and improve upon or alter the code as they see fit.
+
+'main.cpp' is a standard C++ file and 'mandel.cl' is an OpenCL kernel format file, which can be modified by the user
+using a standard text editor to alter fractal appearance and complexity. The kernel performs parallel, recursive 
+iterations of a Mandelbrot algorithm. The kernel is written to the Grpahics hardware at compilation and returns complete
+fractal RGBA pixel image maps at each rendition at runtime: on program start and at each click event (zoom in / zoom out) 
+performed by the user using the SDL2 libraries referred to.
+
 NB: The kernel ('mandel.cl') has a lot of room for improvement and is by no means the most efficient code to perform
-recursive mandelbrot algorithm pixel colouring functions. The same goes for the interactive navigation code in SDL2.
-The centering and zoom maths is very basic, probably overly complicated and inefficient. Any mathematician who is 
-interested is encouraged to improve upon it. What the software does provide is a tried and tested base from which 
-fractal exploration can be done without having to worry about setting up an environment and writing all the 
-bolier-plate code from scratch. It took me months to get the first basic version working many years ago and hopefully
-the information here can help people avoid some of the hassle of going through that. 
+recursive mandelbrot algorithm pixel colouring functions to produce image maps. The same goes for the interactive
+navigation code in SDL2. The centering and zoom maths is very basic, probably overly complicated and inefficient. 
+Any mathematician who is interested is encouraged to improve upon it. I would love to see it improved upon and extended.
+What the software does provide is a tried and tested base from which fractal exploration can be done without having to
+worry about setting up an environment and writing all the bolier-plate code from scratch. It took me months to get the
+first basic OpenCL utilised version working many years ago and hopefully the code and info here can help people avoid
+some of the hassle of going through that 'just to get started'. 
 
 ## Vulkan
 Vulkan is a new graphics api developed by AMD and Khronos Group. At the time of my early commits, my understanding is 
