@@ -21,7 +21,7 @@ more. I think I am right in remembering that Eric also used SDL in his implement
 Eric has a web site here: http://www.bealto.com/cv.html
 
 ### Mark Brown
-Mark was a very good friend of mine at school and is a very capable programmer. His lovely father was my geography teacher. 
+Mark was a very good friend of mine at school and is a very capable programmer. His father was my fun geography teacher. 
 Mark can (quote): 'get by in 20 or so' programming languages, which, as far as I can tell, actually means he is highly proficient,
 expressed with the wonderful humility that experts in their field often seem to have.
 When I got a recent version of this software to run some years ago, I passed a copy to Mark and he was kind enough to go through
