@@ -43,13 +43,15 @@ for today, built with the benefit of hindsight of other, older low-level languag
 
 ## OpenCl
 OpenCL is very good for doing parallel, recursive compute operations on graphics hardware, which often have thousands
-of very small processors and banks of local memory at various group levels. OpenCL is used to do the 'raw maths'. 
+of very small processors and banks of very fast, locally available memory at various grouping levels. OpenCL is used to
+do the 'raw maths' part. 
 
 When I first wrote a fractal explorer, it was done in Visual Basic. I then rewrote it in C# some years later. Both
 versions would use the CPU and were very slow, taking a few seconds to generate a ~4Mb bitmap. When the program was
 written using an OpenCL kernel and a modest dedicated GPU, it could generate the same image in the region of 400 times
 faster than on the dual core CPU used previously. That equates to millions of iterations being completed for a fairly large
-pixel map in just a few milliseconds.
+pixel map in just a few milliseconds. The interoperability with OpenGL allowed the image maps to be dsiplaced straight to a
+screen, not having to be written to an image file to be opened later.
 The key to understanding why this type of implementation works so well for rendering images using the mandelbrot set is that
 because the madlebrot algorithm is highly recursive and each recursion only requires a very small processor, you can spread
 the load into 'work groups' over the hundreds or thousands of tiny processors available on modern GPU hardware. The kernel
@@ -65,19 +67,20 @@ a little help to get a fully functional, open source implementation of mandelbro
 monitor. Please do refer to all 3rd party open source offerings for yourself, as links may cease to work and what 
 little knowledge provided on the subject of parallel computing is very limited. The subject is huge and this code 
 is offered only to help people to get started withoiut too much fuss. If that first step works, people are encouraged
-to experiment and improve upon or alter the code as they see fit.
+to experiment and improve upon the code as they see fit.
 
 'main.cpp' is a standard C++ file and 'mandel.cl' is an OpenCL kernel format file, which can be modified by the user
-using a standard text editor to alter fractal appearance and complexity. The kernel performs parallel, recursive 
-iterations of a Mandelbrot algorithm. The kernel is written to the Grpahics hardware at compilation and returns complete
-fractal RGBA pixel image maps at each rendition at runtime: on program start and at each click event (zoom in / zoom out) 
-performed by the user using the SDL2 libraries referred to.
+using a standard text editor to alter rendering speed, fractal appearance and complexity. The kernel performs parallel, 
+recursive iterations of the Mandelbrot algorithm. The kernel is written to the Grpahics hardware at compilation and 
+returns complete fractal RGBA pixel image maps at each rendition at runtime: on program start and at each mouse-click 
+event (zoom in / zoom out) performed by the user using the SDL2 library referred to.
 
 NB: The kernel ('mandel.cl') has a lot of room for improvement and is by no means the most efficient code to perform
-recursive mandelbrot algorithm pixel colouring functions to produce image maps. The same goes for the interactive
-navigation code in SDL2. The centering and zoom maths is very basic, probably overly complicated and inefficient. 
-Any mathematician who is interested is encouraged to improve upon it. I would love to see it improved upon and extended.
-What the software does provide is a tried and tested base from which fractal exploration can be done without having to
+recursive mandelbrot algorithm pixel colouring functions to produce image maps. In particular, the colour banding and 
+belnding is very clunky and slow. The same goes for the interactive navigation code in SDL2. The centering and zoom maths
+is very basic, probably overly complicated and inefficient. Any mathematician who is interested is encouraged to improve
+upon it. I would love to see it improved upon and extended.
+What the software does provide is a tried and tested base from which mandelbrot exploration can be done without having to
 worry about setting up an environment and writing all the bolier-plate code from scratch. It took me months to get the
 first basic OpenCL utilised version working many years ago and hopefully the code and info here can help people avoid
 some of the hassle of going through that 'just to get started'. 
