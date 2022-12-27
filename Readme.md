@@ -173,11 +173,11 @@ install them by clicking on the extensions VS Code menu item and searching
 * GitHuib Markdown Preview  : ext install bierner.github-markdown-preview
 
 
-# OS specific instructions
+# OS specific environment setup notes
 
  ## WINDOWS (64-bit)
 (For Win32 substitute MinGW for MinGW-64)
-In windows, the project is most easily developed using the MinGW-64 gcc runtime:
+In windows, the project is easily developed using the MinGW-64 gcc runtime:
 This can be installed from the MSYS2 terminal. Instructions here: https://www.msys2.org/
 You will also need the glu library and header. GLU is included as part of specific OS OpenGL implementations.
 The library file is called 'glew32.dll' and the header is called 'glu.h'
