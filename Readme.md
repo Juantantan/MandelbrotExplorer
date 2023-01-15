@@ -10,7 +10,7 @@ which is written to your Graphics hardware (GPU / CPU /...) during compile. User
 At the time of writing, there was little to no open source code available on the web which demonstrated OpenCL/OpenGL
 interoperability. This is important because it's all very well producing an image map but displaying it to screen has
 to be done to enjoy the image visually. There aren't very many OpenCL offerings when compared to OpenGL and very,
-very few which combine the two APIs. These Interoperability offerings are just code snippets in reference articles.
+very few which combine the two APIs. These Interoperability offerings are mostly just code snippets in reference articles.
 
 ## Mentions and thanks
 ### Eric Bainville
