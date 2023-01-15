@@ -139,7 +139,7 @@ The OpenCL specification is managed by Khronos Group. Khronos.org is an organisa
 from many interested parties. Their homepage is here: https://www.khronos.org/
 The OpenCL registry homepage is here: https://www.khronos.org/registry/OpenCL/
 You can also download the specifications for OpenCL versions from that page. I printed out the OpenCL 1.2 version
-on nice photo quality glossy paper. Using these, it was not hard to implement different openCL API calls.
+on nice photo quality glossy paper. Using these, it was not hard to implement different OpenCL API calls.
 NB: It is worth noting that in 2020 the specification for OpenCL 3.0 came out. This project was written
 in OpenCL 1.2, which is the core on which OpenCL 3.0 is based. This code has been tested and will run
 using OpenCL 1.2 and / or with OpenCL 3.0 when using compliant GPU hardware if you wish and CLang compilers.
