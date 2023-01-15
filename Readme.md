@@ -58,7 +58,7 @@ thermodynamics applications.
 
 The interactive 'SDL2' layer listens for keypress or mouse events, allowing you to zoom in and out of a mandelbrot
 rendition. There are many other possible libraries which could be used. I used SDL because it is very easy to set up and
-very simple to use to intercept realtime user events. I also used glfw but found that trcikier, mainly in terms of header
+very simple to use to intercept realtime user events. I also used glfw but found that trickier, mainly in terms of header
 file versioning, among other things. There is room for adaptation here and any lightweight open source API could be used
 in theory.
 
