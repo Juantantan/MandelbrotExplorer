@@ -170,11 +170,10 @@ OpenCL / OpenGL: OpenCL and OpenGL are by definition open source. However, graph
 OpenCL capable hardware vendors generally have their own proprietory implementations and drivers.
 This means that for OpenCL and OpenGL to work with your hardware, you will often need to install graphics drivers
 for your OS and hardware (GPU / CPU / FGPA). 
-You will likely already have these installed on your machine with your graphics driver implementation and you 
-will likely want keep them up-to-date.
-Apart from the proprietory drivers, the actual OpenCL/OpenGL core header files are free to include and
-can be obtained independently from the hardware vendors if desired.
-Khronos Group are building an OpenCL SDK in GitHUb: https://github.com/KhronosGroup/OpenCL-SDK
+You will likely already have these installed on your machine with your graphics driver implementation.
+Apart from the proprietory drivers, the actual OpenCL/OpenGL core header files can often be obtained independently
+from the hardware vendors if desired. 
+Khronos Group were at the time of writing, building an OpenCL SDK in GitHUb: https://github.com/KhronosGroup/OpenCL-SDK
 This is licensed under the Apache 2.0 license.
 
 
