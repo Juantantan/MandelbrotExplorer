@@ -82,7 +82,8 @@ NB: The kernel ('mandel.cl') has a lot of room for improvisation and is by no me
 pixel colouring functions to produce image maps. In particular, the colour banding and blending is clunky and slower
 than it could be. The same goes for the interactive navigation code in SDL2. The centering and zoom maths is very basic,
 probably overly complicated and inefficient. Any mathematician who is interested is encouraged to improve upon it. 
-I would love to see that partt improved upon and extended.
+I would love to see that part improved upon and simplified. Having lost my latest version (oops), it seems that this
+SDL code doesn't even centre correctly, 
 
 What the software does provide is a tried and tested base from which mandelbrot exploration can be done without having to
 worry about setting up an environment and writing all the bolier-plate code from scratch. It took me months to get the
