@@ -1,5 +1,5 @@
-![Screenshot](/docs/images/rm-2.png)
 # Mandelbrot explorer with OpenGL/OpenCL Interoperability
+![Screenshot](/docs/images/rm-2.png)
 Mandelbrot explorer uses OpenGL/OpenCL interoperability to leverage the raw compute power of OpenCL
 with the display capabilities of OpenGL. It renders colourful, detailed images from pixel maps formed by iterating through 
 the Mandelbrot algorithm and 'shading' each pixel based on the number of iterations each pixel coordinate value in the 
