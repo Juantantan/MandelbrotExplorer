@@ -56,15 +56,20 @@ passes the image map to the peripheral C++ code and on to the display, only runs
 generated. OpenCL can be used for many parallel programming applications, especially those which are highly recursive,
 such as software used to generate molecular sequences for finding possible new pharmaceutical drugs or for many 
 thermodynamics applications. 
-NB: OpenCL can also run with CPU vendor API implementations. It will be interesting to see how fast this type of kernel
-can work with the latest types of CPU, with their increasing use of more threads and more truly parallel threads.
 
+NB: OpenCL can also run with CPU vendor API implementations, including this one, if the vendor SDK is obtaine. It will
+be interesting to see how fast this type of kernel can work with the latest types of CPU, with their increasing use of
+more cores each capable of running more truly parallel threads.
+
+## SDL2
 The interactive 'SDL2' layer listens for keypress or mouse events, allowing you to zoom in and out of a mandelbrot
 rendition. There are many other possible libraries which could be used. I used SDL because it is very easy to set up and
 very simple to use to intercept realtime user events. I also used glfw but found that trickier, mainly in terms of header
 file versioning, among other things. There is room for adaptation here and any lightweight open source API could be used
-in theory.
+in theory. Any speed differences between these user interaction APIs is largely irrelevant because they will all be able
+to respond to user events more-or-less 'instantly'. 
 
+## Core Code
 The base program was orginally written and built using Code::Blocks IDE but the current version was written using 
 Microsoft VS Code. The source codebase consists of only 2 files, 'main.cpp' and 'mandel.cl'. These are what are 
 offered under the GNU license. All other information is offered only to help others to get an environment up and
@@ -76,10 +81,10 @@ is offered only to help people to get started without too much fuss. If that fir
 to experiment and improve upon the code as they see fit. 
 
 'main.cpp' is a standard C++ file and 'mandel.cl' is an OpenCL kernel format file, which can be modified by the user
-using a standard text editor to alter rendering speed, fractal appearance and complexity. The kernel performs parallel, 
-recursive iterations of the Mandelbrot algorithm. The kernel is written to the Grpahics hardware at compilation and 
-returns complete fractal RGBA pixel image maps at each rendition at runtime: on program start and at each mouse-click 
-event (zoom in / zoom out) performed by the user, via the SDL2 library user-interaction layer.
+using a standard text editor to alter rendering speed, fractal appearance and complexity. The kernel performs all the 
+parallel, recursive iterations of the Mandelbrot algorithm. The kernel is written to the Grpahics hardware at compilation
+time and returns complete fractal RGBA pixel image maps at each rendition at runtime: on program start and at each
+mouse-click event (zoom in / zoom out) performed by the user, via the SDL2 API.
 
 NB: The kernel ('mandel.cl') has a lot of room for improvisation and is by no means the most efficient code to perform
 pixel colouring functions to produce image maps. In particular, the colour banding and blending is clunky and slower
@@ -96,14 +101,14 @@ some of the hassle of going through that, just to get started.
 ## Vulkan
 Vulkan is a new graphics api developed by AMD and Khronos Group. At the time of my early commits, my understanding is 
 that parallel compute functionality was not fully mature in Vulkan. OpenCL might even still be the most direct and 
-efficient api to use to do highly recursive parallel compute operations. I will probably not attempt to rewrite
-this code using the Vulkan API once/if Vulkan has complete compute functionality but would be interested if others do. I
-have gone through an excellnt Vulkan learning reference twice amd still find it hard to understand at the lowest level
-when compared to OpenCL. One great aspect of the Vulkan API, is that it has been adopted by the major GPU verndors and
-is as a result able to compete with their APIs. It is intersting to read about CUDA and DirectX, OpenCL and OpenGL and 
-then to compare them with Vulkan using these across different vendor hardwarew.
-Vulkan is increasingly being used for writing game graphics engines. The boilerplate code takes a long time to write but
-once done, it seems a very effifient API to use to write all sorts of graphical (and hopefully compute) intensive tasks.
+efficient api to use to do highly recursive parallel compute operations without having to write too much bolierplate code.
+I may not attempt to rewrite this code using the Vulkan API but would be interested if others do. I have gone through an
+excellnt Vulkan learning reference twice and still find it hard to understand at the lowest level when compared to OpenCL.
+One great aspect of the Vulkan API, is that it has been adopted by the major GPU verndors and is as a result able to compete
+with their other APIs or API wrappers. It is intersting to read about CUDA and DirectX, OpenCL and OpenGL and then to 
+compare them with Vulkan across different types of implementations and different vendor hardware. Vulkan is increasingly 
+being used for writing game graphics engines. The boilerplate code takes a long time to write but once done, it seems a 
+very effifient API to use to write all sorts of graphical (and hopefully compute) intensive software.
 
 
 ![Screenshot](/docs/images/rm-2.png)
