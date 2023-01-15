@@ -86,8 +86,10 @@ some of the hassle of going through that, just to get started.
 ## Vulkan
 Vulkan is a new graphics api developed by AMD and Khronos Group. At the time of my early commits, my understanding is 
 that parallel compute functionality was not fully mature in Vulkan. OpenCL might even still be the most direct and 
-efficient api to use to do these type of parallel computate. I will probably not attempt to rewrite
-this code using the Vulkan API once it has complete compute functionality but would be interested if others do. 
+efficient api to use to do these type of parallel compute operations. I will probably not attempt to rewrite
+this code using the Vulkan API once it has complete compute functionality but would be interested if others do. I
+have gone through an excellnt Vulkan learning system twice amd still find it hard to understand at the lowest level
+compared to OpenCL.
 
 
 ![Screenshot](/docs/images/rm-2.png)
