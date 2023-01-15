@@ -1,3 +1,4 @@
+![Screenshot](/docs/images/rm-2.png)
 # Mandelbrot explorer with OpenGL/OpenCL Interoperability
 Mandelbrot explorer uses OpenGL/OpenCL interoperability to leverage the raw compute power of OpenCL
 with the display capabilities of OpenGL. It renders colourful, detailed images from pixel maps formed by iterating through 
@@ -110,8 +111,6 @@ compare them with Vulkan across different types of implementations and different
 being used for writing game graphics engines. The boilerplate code takes a long time to write but once done, it seems a 
 very effifient API to use to write all sorts of graphical (and hopefully compute) intensive software.
 
-
-![Screenshot](/docs/images/rm-2.png)
 
 The program could equally be run and compiled at the command line without an IDE but the extensions for VS Code make it
 very easy to see what's going on during compilation using that, especillay when debugging. If running with the command
