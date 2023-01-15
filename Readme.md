@@ -12,14 +12,11 @@ to be done to enjoy the image visually. There aren't very many OpenCL offerings 
 very few which combine the two APIs. These Interoperability offerings are just code snippets in reference articles.
 
 ## Mentions and thanks
-I wrote a very basic Mandelbrot set visualiser in Visual Basic 6 in 2003, it was just for a bit of fun and very 
-slow! Upgrding this to a C# version using a Dual-core processor sped things up somewhat but something was missing.
-
 ### Eric Bainville
-A few years later, I did a search on rendering the Mandelbrot set and how others had done that. I stumbled upon the 
-excellent and extensive work done by Eric Bainville. My initial implementation using OpenCL was based on Eric's work.
-Without that, which formed the central core of the OpenCL part, I probably would not have done anything
-more. Eric has a web site here: http://www.bealto.com/cv.html
+A few years after the VB and C# versions were written, I did a search on rendering the Mandelbrot set and how others had
+done that. I stumbled upon the excellent and extensive work done by Eric Bainville. My initial implementation using OpenCL
+was based on Eric's work. Without that, which formed the central core of the OpenCL part, I probably would not have done 
+anything more. Please take the opportunity to see Eric's work. Eric has a web site here: http://www.bealto.com/cv.html
 
 ### Mark Brown
 When I got a recent version of this software to run some years ago, I passed a copy to Mark and he was kind enough to go 
@@ -36,17 +33,21 @@ acceptable quality.
 ## OpenCl
 OpenCL is very good for doing parallel, recursive compute operations on graphics hardware. Modern GPUs often have thousands
 of very small processors and banks of very fast, locally available memory at various grouping levels. OpenCL is used to
-do the 'raw maths' part, and forms the core of this software. If you are using your CPU to do run the recursive mandelbrot 
+do the 'raw maths' part, and forms the core of this software. If you are using your CPU to run the recursive mandelbrot 
 algorithm, you are limited to running only as many parallel instances as you can have parallel threads running on your CPU
-cores. Becasue the algorithm is simple and not CPU intensive at all, it doesn't require big processors. GPU processors are
-ideal!
+cores. Becasue each recursion of the algorithm is simple and not CPU intensive at all, it doesn't require big processors.
+GPU processors are ideal! It is interesting to see how CPUs now contain increasingly greater numbers of cores, each core
+often having several effective cores within. The very latest CPUS are beginning to onclude different type of cores, some 
+which are good for intensive single-thread operations and some which are good for simpler, more parallel workloads. With
+those simpler, parallel cores, they are working more like the small processors of GPUS. GPUs were mainly used just for
+Graphics but now they are used for all sorts of creative work as well. Some don't even provide a display output port.  
 
 As mentioned previously, when I first wrote a fractal explorer, it was done in Visual Basic and then C#. Both versions 
 would use the CPU and were very slow, taking a few seconds to generate a ~4Mb bitmap.
 When the program was written using an OpenCL kernel and a modest dedicated GPU, it could generate the same image in the
-region of 400 times faster than on the dual core CPU used. That equates to billions of iterations being completed for a
-fairly large pixel map in just a few milliseconds. Interoperability with OpenGL allows the image maps to be dsiplayed
-straight to a screen, not having to be written to an image file to be opened later.
+region of 400 times faster than on the dual core CPU used. That equates to billions of algorithm operations being 
+completed for a fairly large pixel map in just a few milliseconds. Interoperability with OpenGL allows the image maps to
+be dsiplayed straight to a screen, not having to be written to an image file to be opened later.
 To reiterate, the key to understanding why this type of implementation works so well for rendering images using the
 mandelbrot set (or other simple, recursive algoritms), is that because the madlebrot algorithm is highly recursive and
 each recursion only requires a very small processor, you can spread the load into 'work groups' over the thousands of 
@@ -55,6 +56,8 @@ passes the image map to the peripheral C++ code and on to the display, only runs
 generated. OpenCL can be used for many parallel programming applications, especially those which are highly recursive,
 such as software used to generate molecular sequences for finding possible new pharmaceutical drugs or for many 
 thermodynamics applications. 
+NB: OpenCL can also run with CPU vendor API implementations. It will be interesting to see how fast this type of kernel
+can work with the latest types of CPU, with their increasing use of more threads and more truly parallel threads.
 
 The interactive 'SDL2' layer listens for keypress or mouse events, allowing you to zoom in and out of a mandelbrot
 rendition. There are many other possible libraries which could be used. I used SDL because it is very easy to set up and
