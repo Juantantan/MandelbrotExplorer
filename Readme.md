@@ -9,11 +9,11 @@ which is written to your Graphics hardware (GPU / CPU /...) during compile. User
 At the time of writing, there was little to no open source code available on the web which demonstrated OpenCL/OpenGL
 interoperability. This is important because it's all very well producing an image map but displaying it to screen has
 to be done to enjoy the image visually. There aren't very many OpenCL offerings when compared to OpenGL and very,
-very few which combine the two APIs. 
+very few which combine the two APIs. These Interoperability offerings are just code snippets in reference articles.
 
 ## Mentions and thanks
 I wrote a very basci Mandelbrot set visualiser in Visual Basic 6 in 2003, it was just for a bit of fun and very 
-slow! Upgrding this to a C# version using a Dual-core processor sped things up somewhat but somethign was missing.
+slow! Upgrding this to a C# version using a Dual-core processor sped things up somewhat but something was missing.
 
 ### Eric Bainville
 A few years later, I did a search on rendering the Mandelbrot set and how others had done that. I stumbled upon the 
