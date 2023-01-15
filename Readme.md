@@ -12,7 +12,7 @@ to be done to enjoy the image visually. There aren't very many OpenCL offerings 
 very few which combine the two APIs. These Interoperability offerings are just code snippets in reference articles.
 
 ## Mentions and thanks
-I wrote a very basci Mandelbrot set visualiser in Visual Basic 6 in 2003, it was just for a bit of fun and very 
+I wrote a very basic Mandelbrot set visualiser in Visual Basic 6 in 2003, it was just for a bit of fun and very 
 slow! Upgrding this to a C# version using a Dual-core processor sped things up somewhat but something was missing.
 
 ### Eric Bainville
