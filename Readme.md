@@ -6,7 +6,7 @@ imaginary plane takes to escape the mandelbrot set. You can zoom in and out with
 which is written to your Graphics hardware (GPU / CPU /...) during compile. User interaction (zooming) is done via the 
 3rd party SDL2 library.
 
-At the time of writing, there was very little open source code available on the web which demonstrated OpenCL/OpenGL
+At the time of writing, there was little to no open source code available on the web which demonstrated OpenCL/OpenGL
 interoperability. This is important because it's all very well producing an image map but displaying it to screen has
 to be done to enjoy the image visually. There aren't very many OpenCL offerings when compared to OpenGL and very,
 very few which combine the two APIs. 
