@@ -36,9 +36,9 @@ OpenCL is very good for doing parallel, recursive compute operations on graphics
 of very small processors and banks of very fast, locally available memory at various grouping levels. OpenCL is used to
 do the 'raw maths' part, and forms the core of this software. If you are using your CPU to run the recursive mandelbrot 
 algorithm, you are limited to running only as many parallel instances as you can have parallel threads running on your CPU
-cores. Becasue each recursion of the algorithm is simple and not CPU intensive at all, it doesn't require big processors.
+cores. Because each recursion of the algorithm is simple and not CPU intensive at all, it doesn't require big processors.
 GPU processors are ideal! It is interesting to see how CPUs now contain increasingly greater numbers of cores, each core
-often having several effective cores within. The very latest CPUS are beginning to onclude different type of cores, some 
+often having several effective cores within. The very latest CPUS are beginning to include different type of cores, some 
 which are good for intensive single-thread operations and some which are good for simpler, more parallel workloads. With
 those simpler, parallel cores, they are working more like the small processors of GPUS. GPUs were mainly used just for
 Graphics but now they are used for all sorts of creative work as well. Some don't even provide a display output port.  
@@ -58,7 +58,7 @@ generated. OpenCL can be used for many parallel programming applications, especi
 such as software used to generate molecular sequences for finding possible new pharmaceutical drugs or for many 
 thermodynamics applications. 
 
-NB: OpenCL can also run with CPU vendor API implementations, including this one, if the vendor SDK is obtaine. It will
+NB: OpenCL can also run with CPU vendor API implementations, including this one, if the vendor SDK is obtained. It will
 be interesting to see how fast this type of kernel can work with the latest types of CPU, with their increasing use of
 more cores each capable of running more truly parallel threads.
 
@@ -98,19 +98,6 @@ What the software does provide is a tried and tested base from which mandelbrot 
 worry about setting up an environment and writing all the bolier-plate code from scratch. It took me months to get the
 first basic OpenCL utilised version working many years ago, and hopefully the code and info here can help people avoid
 some of the hassle of going through that, just to get started. 
-
-## Vulkan
-Vulkan is a new graphics api developed by AMD and Khronos Group. At the time of my early commits, my understanding is 
-that parallel compute functionality was not fully mature in Vulkan. OpenCL might even still be the most direct and 
-efficient api to use to do highly recursive parallel compute operations without having to write too much bolierplate code.
-I may not attempt to rewrite this code using the Vulkan API but would be interested if others do. I have gone through an
-excellnt Vulkan learning reference twice and still find it hard to understand at the lowest level when compared to OpenCL.
-One great aspect of the Vulkan API, is that it has been adopted by the major GPU verndors and is as a result able to compete
-with their other APIs or API wrappers. It is intersting to read about CUDA and DirectX, OpenCL and OpenGL and then to 
-compare them with Vulkan across different types of implementations and different vendor hardware. Vulkan is increasingly 
-being used for writing game graphics engines. The boilerplate code takes a long time to write but once done, it seems a 
-very effifient API to use to write all sorts of graphical (and hopefully compute) intensive software.
-
 
 The program could equally be run and compiled at the command line without an IDE but the extensions for VS Code make it
 very easy to see what's going on during compilation using that, especillay when debugging. If running with the command
@@ -160,6 +147,17 @@ Read more about OpenCL 3.0 here: https://www.khronos.org/news/press/khronos-grou
 There is a working group that also guides the development of OpenCL (and SYCL):
 https://www.iwocl.org/
 
+## Vulkan
+Vulkan is a new graphics api developed by AMD and Khronos Group. At the time of my early commits, my understanding is 
+that parallel compute functionality was not fully mature in Vulkan. OpenCL might even still be the most direct and 
+efficient api to use to do highly recursive parallel compute operations without having to write too much bolierplate code.
+I may not attempt to rewrite this code using the Vulkan API but would be interested if others do. I have gone through an
+excellnt Vulkan learning reference twice and still find it hard to understand at the lowest level when compared to OpenCL.
+One great aspect of the Vulkan API, is that it has been adopted by the major GPU verndors and is as a result able to compete
+with their other APIs or API wrappers. It is intersting to read about CUDA and DirectX, OpenCL and OpenGL and then to 
+compare them with Vulkan across different types of implementations and different vendor hardware. Vulkan is increasingly 
+being used for writing game graphics engines. The boilerplate code takes a long time to write but once done, it seems a 
+very effifient API to use to write all sorts of graphical (and hopefully compute) intensive software.
 
 ## Licensing 
 Ths project base code is licensed under the GNU GENERAL PUBLIC LICENSE version 3.0:
