@@ -34,9 +34,9 @@ learning Python and Postgre Sql in Linux. Their precision and thoroughness helpe
 acceptable quality.
 
 ## OpenCl
-OpenCL is very good for doing parallel, recursive compute operations on graphics hardware, which often have thousands
+OpenCL is very good for doing parallel, recursive compute operations on graphics hardware. GPUs often have thousands
 of very small processors and banks of very fast, locally available memory at various grouping levels. OpenCL is used to
-do the 'raw maths' part. 
+do the 'raw maths' part, and forms the core of this software. 
 
 As mentioned previously, when I first wrote a fractal explorer, it was done in Visual Basic. I then rewrote it in C# some
 years later. Both versions would use the CPU and were very slow, taking a few seconds to generate a ~4Mb bitmap. When the
@@ -49,8 +49,9 @@ because the madlebrot algorithm is highly recursive and each recursion only requ
 the load into 'work groups' over the thousands of tiny processors available on modern GPU hardware. The kernel
 code compiles to the GPU itself and a 'swap buffer', which passes the image map to the peripheral C++ code and on to the 
 display only runs once each time a complete fractal is generated. OpenCL can be used for many parallel programming
-applications, especially those which are highly recursive, such as software used to generate moleculses and sequences
-for finding possible medical or thermodynamic applications. 
+applications, especially those which are highly recursive, such as software used to generate molecular sequences
+for finding possible pharmaceutical drugs or for many thermodynamics applications. 
+
 The interactive 'SDL2' layer listens for keypress or mouse events, allowing you to zoom in and out of a mandelbrot
 rendition. There are many other possible libraries which could be used. I used SDL because it is very easy to set up and
 very simple to use to intercept realtime hardware events. I also used glfw and found that trcikier in terms of header
@@ -63,76 +64,82 @@ running and people are advised to read about these parts themselves. All links a
 a little help to get a fully functional, open source implementation of mandelbrot visualisations to render to your 
 monitor. Please do refer to all 3rd party open source offerings for yourself, as links may cease to work and what 
 little knowledge provided on the subject of parallel computing is very limited. The subject is huge and this code 
-is offered only to help people to get started withoiut too much fuss. If that first step works, people are encouraged
+is offered only to help people to get started without too much fuss. If that first step works, people are encouraged
 to experiment and improve upon the code as they see fit. 
 
 'main.cpp' is a standard C++ file and 'mandel.cl' is an OpenCL kernel format file, which can be modified by the user
 using a standard text editor to alter rendering speed, fractal appearance and complexity. The kernel performs parallel, 
 recursive iterations of the Mandelbrot algorithm. The kernel is written to the Grpahics hardware at compilation and 
 returns complete fractal RGBA pixel image maps at each rendition at runtime: on program start and at each mouse-click 
-event (zoom in / zoom out) performed by the user using the SDL2 library user-interaction layer.
+event (zoom in / zoom out) performed by the user, via the SDL2 library user-interaction layer.
 
 NB: The kernel ('mandel.cl') has a lot of room for improvisation and is by no means the most efficient code to perform
-recursive mandelbrot algorithm pixel colouring functions to produce image maps. In particular, the colour banding and 
-belnding is clunky and slower than it could be. The same goes for the interactive navigation code in SDL2. The centering
-and zoom maths is very basic, probably overly complicated and inefficient. Any mathematician who is interested is
-encouraged to improve upon it. I would love to see that partt improved upon and extended.
+pixel colouring functions to produce image maps. In particular, the colour banding and blending is clunky and slower
+than it could be. The same goes for the interactive navigation code in SDL2. The centering and zoom maths is very basic,
+probably overly complicated and inefficient. Any mathematician who is interested is encouraged to improve upon it. 
+I would love to see that partt improved upon and extended.
 
 What the software does provide is a tried and tested base from which mandelbrot exploration can be done without having to
 worry about setting up an environment and writing all the bolier-plate code from scratch. It took me months to get the
-first basic OpenCL utilised version working many years ago and hopefully the code and info here can help people avoid
+first basic OpenCL utilised version working many years ago, and hopefully the code and info here can help people avoid
 some of the hassle of going through that, just to get started. 
 
 ## Vulkan
 Vulkan is a new graphics api developed by AMD and Khronos Group. At the time of my early commits, my understanding is 
 that parallel compute functionality was not fully mature in Vulkan. OpenCL might even still be the most direct and 
-efficient api to use to do these type of parallel compute operations. I will probably not attempt to rewrite
-this code using the Vulkan API once it has complete compute functionality but would be interested if others do. I
-have gone through an excellnt Vulkan learning system twice amd still find it hard to understand at the lowest level
-compared to OpenCL.
+efficient api to use to do highly recursive parallel compute operations. I will probably not attempt to rewrite
+this code using the Vulkan API once/if Vulkan has complete compute functionality but would be interested if others do. I
+have gone through an excellnt Vulkan learning reference twice amd still find it hard to understand at the lowest level
+when compared to OpenCL. One great aspect of the Vulkan API, is that it has been adopted by the major GPU verndors and
+is as a result able to compete with their APIs. It is intersting to read about CUDA and DirectX, OpenCL and OpenGL and 
+then to compare them with Vulkan using these across different vendor hardwarew.
+Vulkan is increasingly being used for writing game graphics engines. The boilerplate code takes a long time to write but
+once done, it seems a very effifient API to use to write all sorts of graphical (and hopefully compute) intensive tasks.
 
 
 ![Screenshot](/docs/images/rm-2.png)
 
-The program could equally be run and compiled at the command line without an IDE but the
-extensions for VS Code make it very easy to see what's going on using that, especillay when
-debugging. If running with the command prompt, linker flags will need to be set correctly.
-On linux, the following should work. (You might have to preceed with the admin 'sudo' command, 
-depending on your setup):
+The program could equally be run and compiled at the command line without an IDE but the extensions for VS Code make it
+very easy to see what's going on during compilation using that, especillay when debugging. If running with the command
+prompt, linker flags will need to be set correctly. On linux, the following should work. 
+(You might have to preceed with the admin 'sudo' command, depending on your setup):
 
 g++ main.cpp -Wall -lSDL2main -lSDL2 -lSDL2_image -lGL -lGLU -lglut -lOpenCL -o ../bin/main.out
 
 If using VS Code, your project can include local config files in json format:
-(launch.json/tasks.json/c_cpp_properties.json) and a VS Code workspace file. Basic versions are included 
+(launch.json/tasks.json/c_cpp_properties.json) and a VS Code workspace file. Basic versions are included, 
 which work on this project in linux on my PC. 
 
 ## Compiler 
 Here are some general instructions from the Visual Studio Code website for setting these up for your local
-deployment using the GNU compiler / debugger (gdb/gcc) or CLang (sepecially with OpenCL V 3.0:
+deployment using the GNU compiler / debugger (gdb/gcc) or CLang (probably best Mac and/or with OpenCL V 3.0):
 * Windows (with MinGW/MinGW-w64 & gdb)  : https://code.visualstudio.com/docs/cpp/config-mingw
 * Linux (with gdb)                      : https://code.visualstudio.com/docs/cpp/config-linux
 * Mac/OSX (with CLang compiler)         : https://code.visualstudio.com/docs/cpp/config-clang-mac
 
 ## 3rd party requirements 
 The project requires the following libraries/source/headers:
-* OpenGL - Graphics rendering (may already be present by default on Linux and Mac OS)
-* OpenCL - For Compute operations (may already be present by default on Linux and Mac OS)
+* OpenGL - Graphics rendering (may already be present by default on Linux and/or Mac OS)
+* OpenCL - For Compute operations (may already be present by default on Linux and/or Mac OS)
 * SDL2 - For user / screen interaction (requires runtime library install and header)
 * SDL2_Image (optional) - For working with physical image files (requires header file include). 
   This is not strictly required unless physical images are being created from the raw image data
   sent to the screen in the base code.
   https://www.libsdl.org/
   (SDL2 is just one of several possible 3rd party interactive layers you could use. This code does 
-  require it but could be modified to work with different user interaction libraries.
+  require it but could be modified to work with different user interaction libraries, such as glfw, as mentioned
+  previously.
 * glu.h - OpenGL helper header file. (Usually already present in the include/GL folder)
 Installing these 3rd party dibraries will be different on different platforms. In Windows there is 
-an SDK which can be installed but this may exist already on your machine in the other OS'.
+an SDK which can be installed but this may exist already on your machine in the other OS'. Of course, you can
+often find the open source header files offered on their own or as part of other open source offerings.
 
 ### OpenCL notes
 The OpenCL specification is managed by Khronos Group. Khronos.org is an organisation of representatives
 from many interested parties. Their homepage is here: https://www.khronos.org/
 The OpenCL registry homepage is here: https://www.khronos.org/registry/OpenCL/
-You can also download the specifications for OpenCL ersion from that page.
+You can also download the specifications for OpenCL versions from that page. I printed out the OpenCL 1.2 version
+on nice photo quality glossy paper. Using these, it was not hard to implement different openCL API calls.
 NB: It is worth noting that in 2020 the specification for OpenCL 3.0 came out. This project was written
 in OpenCL 1.2, which is the core on which OpenCL 3.0 is based. This code has been tested and will run
 using OpenCL 1.2 and / or with OpenCL 3.0 when using compliant GPU hardware if you wish and CLang compilers.
