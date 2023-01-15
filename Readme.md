@@ -48,12 +48,13 @@ region of 400 times faster than on the dual core CPU used. That equates to billi
 fairly large pixel map in just a few milliseconds. Interoperability with OpenGL allows the image maps to be dsiplayed
 straight to a screen, not having to be written to an image file to be opened later.
 To reiterate, the key to understanding why this type of implementation works so well for rendering images using the
-mandelbrot set is that because the madlebrot algorithm is highly recursive and each recursion only requires a very small
-processor, you can spread the load into 'work groups' over the thousands of tiny processors available on modern GPU hardware.
-The kernel code compiles to the GPU itself and a 'swap buffer', which passes the image map to the peripheral C++ code and on
-to the display, only runs once each time a complete fractal is generated. OpenCL can be used for many parallel programming
-applications, especially those which are highly recursive, such as software used to generate molecular sequences
-for finding possible new pharmaceutical drugs or for many thermodynamics applications. 
+mandelbrot set (or other simple, recursive algoritms), is that because the madlebrot algorithm is highly recursive and
+each recursion only requires a very small processor, you can spread the load into 'work groups' over the thousands of 
+tiny processors available on modern GPU hardware. The kernel code compiles to the GPU itself and a 'swap buffer', which
+passes the image map to the peripheral C++ code and on to the display, only runs once each time a complete fractal is 
+generated. OpenCL can be used for many parallel programming applications, especially those which are highly recursive,
+such as software used to generate molecular sequences for finding possible new pharmaceutical drugs or for many 
+thermodynamics applications. 
 
 The interactive 'SDL2' layer listens for keypress or mouse events, allowing you to zoom in and out of a mandelbrot
 rendition. There are many other possible libraries which could be used. I used SDL because it is very easy to set up and
