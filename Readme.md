@@ -34,16 +34,17 @@ up to an acceptable quality, and especially he helped me with the complex world 
 
 ## OpenCL
 OpenCL is very good for doing parallel, recursive compute operations on graphics hardware. It actually uses 'dynamic 
-parallelism', as true recursion isn't supported. Modern GPUs often have thousands of very small processors and banks of 
-very fast, locally available memory at various grouping levels. OpenCL is used to do the 'raw maths' part, and forms the
-core of this software. If you are using your CPU to run the recursive mandelbrot algorithm, you are limited to running 
-only as many parallel instances as you can have parallel threads running on your CPU cores. 
-Because each 'recursion' of the algorithm is simple and not processor intensive at all, it doesn't require big processors.
-GPU processors are ideal! It is interesting to see how CPUs now contain increasingly greater numbers of cores, each core
-often having several effective cores within. The very latest CPUS are beginning to include different type of cores, some 
-which are good for intensive single-thread operations and some which are good for simpler, more parallel workloads. With
-those simpler, parallel cores, they are working more like the small processors of GPUS. GPUs were mainly used just for
-Graphics but now they are used for all sorts of creative work as well. Some don't even provide a display output port.  
+parallelism', as true recursion isn't supported, nor does it need to be by nature of Graphics hardware, processor size and 
+memory allocation. Modern GPUs often have thousands of very small processors and banks of very fast, locally available
+memory at various grouping levels. OpenCL is used to do the 'raw maths' part, and forms the core of this software. 
+If you are using your CPU to run the recursive mandelbrot algorithm, you are limited to running only as many parallel 
+instances as you can have parallel threads running on your CPU cores. Because each 'recursion' of the algorithm is simple
+and not processor intensive at all, it doesn't require big processors. GPU processors are ideal! It is interesting to see
+how CPUs now contain increasingly greater numbers of cores, each core often having several effective cores within. The 
+very latest CPUS are beginning to include different type of cores, some which are good for intensive single-thread
+operations and some which are good for simpler, more parallel workloads. With those simpler, parallel cores, they are
+working more like the parallel small processors of GPUS. GPUs were once mainly used just for Graphics but now they are
+used for all sorts of creative and compute work as well. Some don't even provide a display output port.  
 
 As mentioned previously, when I first wrote a fractal explorer, it was done in Visual Basic and then C#. Both versions 
 would use the CPU and were very slow, taking a few seconds to generate a ~4Mb bitmap.
@@ -52,7 +53,7 @@ region of 400 times faster than on the dual core CPU used. That equates to billi
 completed for a fairly large pixel map in just a few milliseconds. Interoperability with OpenGL allows the image maps to
 be dsiplayed straight to a screen, not having to be written to an image file to be opened later.
 To reiterate, the key to understanding why this type of implementation works so well for rendering images using the
-mandelbrot set (or other simple, recursive algoritms), is that because the madlebrot algorithm is highly recursive and
+mandelbrot set (or other simple, recursive algoritms), is that because the madlebrot algorithm is highly 'recursive' and
 each recursion only requires a very small processor, you can spread the load into 'work groups' over the thousands of 
 tiny processors available on modern GPU hardware. The kernel code compiles to the GPU itself and a 'swap buffer', which
 passes the image map to the peripheral C++ code and on to the display, only runs once each time a complete fractal is 
