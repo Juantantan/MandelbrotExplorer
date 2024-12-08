@@ -32,7 +32,7 @@ Jack was a colleague of mine at my work. I owe him thanks for his kindness and p
 Postgre Sql in Linux for rail lateness annotation software. Jack's precision and thoroughness helped me to bring my PR's
 up to an acceptable quality, and especially he helped me with the complex world of Signalling and also Git itself.
 
-## OpenCl
+## OpenCL
 OpenCL is very good for doing parallel, recursive compute operations on graphics hardware. It actually uses 'dynamic 
 parallelism', as true recursion isn't supported. Modern GPUs often have thousands of very small processors and banks of 
 very fast, locally available memory at various grouping levels. OpenCL is used to do the 'raw maths' part, and forms the
