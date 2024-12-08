@@ -29,7 +29,7 @@ encryption and security and on many other subjects.
 
 ### Jack Costin
 Jack was a colleague of mine at my work. I owe him thanks for his kindness and patience when I was learning Python and
-Postgre Sql in Linux for raqil lateness annotation software. Jack's precision and thoroughness helped me to bring my PR's
+Postgre Sql in Linux for rail lateness annotation software. Jack's precision and thoroughness helped me to bring my PR's
 up to an acceptable quality, and especially he helped me with the complex world of Signalling and also Git itself.
 
 ## OpenCl
