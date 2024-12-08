@@ -1,11 +1,11 @@
 # Mandelbrot explorer with OpenGL/OpenCL Interoperability
 ![Screenshot](/docs/images/rm-2.png)
 Mandelbrot explorer uses OpenGL/OpenCL interoperability to leverage the raw compute power of OpenCL
-with the display capabilities of OpenGL. It renders colourful, detailed images from pixel maps formed by iterating through 
-the Mandelbrot algorithm and 'shading' each pixel based on the number of iterations each pixel coordinate value in the 
-imaginary plane takes to escape the mandelbrot set. You can zoom in and out with Mouse L + R. You can alter the 'kernel' file,
-which is written to your Graphics hardware (GPU / CPU /...) during compile. User interaction (zooming) is done via the 
-3rd party SDL2 library.
+with the display capabilities of OpenGL. The codebase will work in Linux, Windows and MacOS. Fractal explorer renders 
+colourful, detailed images from pixel maps formed by iterating through the Mandelbrot algorithm and 'shading' each pixel
+based on the number of iterations each pixel coordinate value in the imaginary plane takes to escape the mandelbrot set.
+You can zoom in and out with Mouse L + R. You can alter the 'kernel' file, which is written to your Graphics hardware 
+(GPU / CPU /...) during compile. User interaction (zooming) is done via the 3rd party SDL2 library.
 
 At the time of writing, there was little to no open source code available on the web which demonstrated OpenCL/OpenGL
 interoperability. This is important because it's all very well producing an image map but displaying it to screen has
@@ -14,10 +14,11 @@ very few which combine the two APIs. These Interoperability offerings are mostly
 
 ## Mentions and thanks
 ### Eric Bainville
-A few years after the VB and C# versions were written, I did a search on rendering the Mandelbrot set and how others had
-done that. I stumbled upon the excellent and extensive work done by Eric Bainville. My initial implementation using OpenCL
-was based on Eric's work. Without that, which formed the central core of the OpenCL part, I probably would not have done 
-anything more. Please take the opportunity to see Eric's work. Eric has a web site here: http://www.bealto.com/cv.html
+A few years after processor only VB and C# versions were written, I did a search on rendering the Mandelbrot set and how
+others had done that. I stumbled upon the excellent and extensive work done by Eric Bainville. 
+My initial implementation using OpenCL was based on Eric's work. Without that, which formed the central core of the OpenCL
+part, I probably would not have done anything more. Please take the opportunity to see Eric's work. Eric's CV is here: 
+http://www.bealto.com/cv.html
 
 ### Mark Brown
 When I got a recent version of this software to run some years ago, I passed a copy to Mark and he was kind enough to go 
@@ -26,17 +27,18 @@ to me. He also commented on various aspects of what I was trying to do and opene
 such as functional programming. Mark has written web guides for using Erlang, OpenGL with Lisp, Ray-tracing, OpenSSH, 
 encryption and security and on many other subjects. 
 
-### Richard Garnett and Jack Costin
-Richard and Jack have been colleagues of mine at my work. I owe then so much thanks for their patience when I was slowly 
-learning Python and Postgre Sql in Linux. Their precision and thoroughness helped to teach me to bring my PR's up to an
-acceptable quality.
+### Jack Costin
+Jack was a colleague of mine at my work. I owe him thanks for his kindness and patience when I was learning Python and
+Postgre Sql in Linux for raqil lateness annotation software. Jack's precision and thoroughness helped me to bring my PR's
+up to an acceptable quality, and especially he helped me with the complex world of Signalling and also Git itself.
 
 ## OpenCl
-OpenCL is very good for doing parallel, recursive compute operations on graphics hardware. Modern GPUs often have thousands
-of very small processors and banks of very fast, locally available memory at various grouping levels. OpenCL is used to
-do the 'raw maths' part, and forms the core of this software. If you are using your CPU to run the recursive mandelbrot 
-algorithm, you are limited to running only as many parallel instances as you can have parallel threads running on your CPU
-cores. Because each recursion of the algorithm is simple and not CPU intensive at all, it doesn't require big processors.
+OpenCL is very good for doing parallel, recursive compute operations on graphics hardware. It actually uses 'dynamic 
+parallelism', as true recursion isn't supported. Modern GPUs often have thousands of very small processors and banks of 
+very fast, locally available memory at various grouping levels. OpenCL is used to do the 'raw maths' part, and forms the
+core of this software. If you are using your CPU to run the recursive mandelbrot algorithm, you are limited to running 
+only as many parallel instances as you can have parallel threads running on your CPU cores. 
+Because each 'recursion' of the algorithm is simple and not processor intensive at all, it doesn't require big processors.
 GPU processors are ideal! It is interesting to see how CPUs now contain increasingly greater numbers of cores, each core
 often having several effective cores within. The very latest CPUS are beginning to include different type of cores, some 
 which are good for intensive single-thread operations and some which are good for simpler, more parallel workloads. With
@@ -54,7 +56,7 @@ mandelbrot set (or other simple, recursive algoritms), is that because the madle
 each recursion only requires a very small processor, you can spread the load into 'work groups' over the thousands of 
 tiny processors available on modern GPU hardware. The kernel code compiles to the GPU itself and a 'swap buffer', which
 passes the image map to the peripheral C++ code and on to the display, only runs once each time a complete fractal is 
-generated. OpenCL can be used for many parallel programming applications, especially those which are highly recursive,
+generated. OpenCL can be used for many parallel programming applications, especially those which are highly 'recursive',
 such as software used to generate molecular sequences for finding possible new pharmaceutical drugs or for many 
 thermodynamics applications. 
 
@@ -78,21 +80,20 @@ running and people are advised to read about these parts themselves. All links a
 a little help to get a fully functional, open source implementation of mandelbrot visualisations to render to your 
 monitor. Please do refer to all 3rd party open source offerings for yourself, as links may cease to work and what 
 little knowledge provided on the subject of parallel computing is very limited. The subject is huge and this code 
-is offered only to help people to get started without too much fuss. If that first step works, people are encouraged
-to experiment and improve upon the code as they see fit. 
+is offered only to help people to get started without too much fuss. 
 
 'main.cpp' is a standard C++ file and 'mandel.cl' is an OpenCL kernel format file, which can be modified by the user
 using a standard text editor to alter rendering speed, fractal appearance and complexity. The kernel performs all the 
-parallel, recursive iterations of the Mandelbrot algorithm. The kernel is written to the Grpahics hardware at compilation
-time and returns complete fractal RGBA pixel image maps at each rendition at runtime: on program start and at each
-mouse-click event (zoom in / zoom out) performed by the user, via the SDL2 API.
+parallel, 'recursive' iterations of the Mandelbrot algorithm. The kernel is written to the Grpahics hardware at 
+compilation time and returns complete fractal RGBA pixel image maps at each rendition at runtime: on program start and
+at each mouse-click event (zoom in / zoom out) performed by the user, via the SDL2 API.
 
 NB: The kernel ('mandel.cl') has a lot of room for improvisation and is by no means the most efficient code to perform
 pixel colouring functions to produce image maps. In particular, the colour banding and blending is clunky and slower
 than it could be. The same goes for the interactive navigation code in SDL2. The centering and zoom maths is very basic,
 probably overly complicated and inefficient. Any mathematician who is interested is encouraged to improve upon it. 
-I would love to see that part improved upon and simplified. Having lost my latest version (oops), it seems that this
-SDL code doesn't even centre correctly, 
+I would love to see that part improved upon and simplified. It seems that this SDL code doesn't even centre correctly, 
+so I may have messed up a commit.
 
 What the software does provide is a tried and tested base from which mandelbrot exploration can be done without having to
 worry about setting up an environment and writing all the bolier-plate code from scratch. It took me months to get the
@@ -142,7 +143,7 @@ You can also download the specifications for OpenCL versions from that page. I p
 on nice photo quality glossy paper. Using these, it was not hard to implement different OpenCL API calls.
 NB: It is worth noting that in 2020 the specification for OpenCL 3.0 came out. This project was written
 in OpenCL 1.2, which is the core on which OpenCL 3.0 is based. This code has been tested and will run
-using OpenCL 1.2 and / or with OpenCL 3.0 when using compliant GPU hardware if you wish and CLang compilers.
+using OpenCL 1.2 and / or with OpenCL 3.0 when using compliant GPU hardware if you wish, and CLang compilers.
 Read more about OpenCL 3.0 here: https://www.khronos.org/news/press/khronos-group-releases-opencl-3.0
 There is a working group that also guides the development of OpenCL (and SYCL):
 https://www.iwocl.org/
@@ -152,12 +153,12 @@ Vulkan is a new graphics api developed by AMD and Khronos Group. At the time of 
 that parallel compute functionality was not fully mature in Vulkan. OpenCL might even still be the most direct and 
 efficient api to use to do highly recursive parallel compute operations without having to write too much bolierplate code.
 I may not attempt to rewrite this code using the Vulkan API but would be interested if others do. I have gone through an
-excellnt Vulkan learning reference twice and still find it hard to understand at the lowest level when compared to OpenCL.
+excellent Vulkan learning reference twice and still find it hard to understand at the lowest level when compared to OpenCL.
 One great aspect of the Vulkan API, is that it has been adopted by the major GPU verndors and is as a result able to compete
-with their other APIs or API wrappers. It is intersting to read about CUDA and DirectX, OpenCL and OpenGL and then to 
-compare them with Vulkan across different types of implementations and different vendor hardware. Vulkan is increasingly 
-being used for writing game graphics engines. The boilerplate code takes a long time to write but once done, it seems a 
-very effifient API to use to write all sorts of graphical (and hopefully compute) intensive software.
+with their other APIs or API wrappers. It is intersting to read about NVIDIA's CUDA and Microsoft's DirectX, OpenCL and
+OpenGL and then to compare them with Vulkan across different types of implementations and different vendor hardware. 
+Vulkan is increasingly being used for writing game graphics engines. The boilerplate code takes a long time to write but
+once done, it seems a very effifient API to use to write all sorts of graphical (and hopefully compute) intensive software.
 
 ## Licensing 
 Ths project base code is licensed under the GNU GENERAL PUBLIC LICENSE version 3.0:
@@ -169,10 +170,10 @@ SDL2 and SDL_Image are made available under the zlib license: https://www.zlib.n
 OpenCL / OpenGL: OpenCL and OpenGL are by definition open source. However, graphics rendering / compute
 OpenCL capable hardware vendors generally have their own proprietory implementations and drivers.
 This means that for OpenCL and OpenGL to work with your hardware, you will often need to install graphics drivers
-for your OS and hardware (GPU / CPU / FGPA). 
-You will likely already have these installed on your machine with your graphics driver implementation.
-Apart from the proprietory drivers, the actual OpenCL/OpenGL core header files can often be obtained independently
-from the hardware vendors if desired. 
+for your OS and hardware (GPU / CPU / FGPA - 'Field-programmable gate array'). 
+You will likely already have these installed on your machine with your graphics driver vendor implementation.
+Apart from the proprietory drivers, the actual OpenCL/OpenGL open source core header files can often be obtained
+independently from the hardware vendors, if desired. 
 Khronos Group were at the time of writing, building an OpenCL SDK in GitHUb: https://github.com/KhronosGroup/OpenCL-SDK
 This is licensed under the Apache 2.0 license.
 
@@ -194,7 +195,7 @@ install them by clicking on the extensions VS Code menu item and searching
 In windows, the project is easily developed using the MinGW-64 gcc runtime:
 This can be installed from the MSYS2 terminal. Instructions here: https://www.msys2.org/
 You will also need the glu library and header. GLU is included as part of specific OS OpenGL implementations.
-The library file is called 'glew32.dll' and the header is called 'glu.h'
+The library file is called 'glew32.dll' and the header file is called 'glu.h'
 
 To install SDL2, see the following:
 https://wiki.libsdl.org/SourceCode & https://wiki.libsdl.org/Installation
