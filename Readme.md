@@ -3,7 +3,7 @@
 Mandelbrot explorer uses OpenGL/OpenCL interoperability to leverage the raw compute power of OpenCL with the display
 capabilities of OpenGL. The codebase will work in Linux, Windows and MacOS. Mandelbrot explorer renders colourful, 
 detailed images from pixel maps formed by iterating through the Mandelbrot algorithm and 'shading' each pixel based on the
-number of iterations each pixel coordinate value in the imaginary plane takes to escape the mandelbrot set.
+number of iterations each pixel coordinate value in the real and imaginary planes takes to escape the mandelbrot set.
 You can zoom in and out with Mouse L + R. You can alter the 'kernel' file, which is written to your Graphics hardware 
 (GPU / CPU /...) during compile. User interaction (zooming) is done via the 3rd party SDL2 library.
 
