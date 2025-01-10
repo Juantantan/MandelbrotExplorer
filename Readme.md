@@ -32,7 +32,7 @@ To understand what the Mandelbrot set is, it is worth reading about it, which yo
 https://en.wikipedia.org/wiki/Mandelbrot_set
 
 ## OpenCL
-OpenCL is ideal at performing parallel, iterative compute operations on graphics hardware. It actually uses 'dynamic 
+OpenCL is ideal for performing parallel, iterative compute operations on graphics hardware. It actually uses 'dynamic 
 parallelism', and true recursion isn't supported. Modern GPUs now have thousands of very small processors and banks of
 fast, local (to the GPU) memory at various grouping levels. OpenCL is used to do the 'raw maths' part, and forms the
 core of this software. 
