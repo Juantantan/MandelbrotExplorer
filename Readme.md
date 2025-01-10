@@ -145,17 +145,18 @@ The project requires the following libraries/source/headers:
   offered on their own or as part of other open source offerings.
 
 ### OpenCL notes
-The OpenCL specification is managed by Khronos Group. Khronos.org is an organisation of representatives
-from many interested parties. Their homepage is here: https://www.khronos.org/ 
-The OpenCL registry homepage is here: https://www.khronos.org/registry/OpenCL/ 
-You can also download the specifications for OpenCL versions from that page. I printed out the OpenCL 1.2 version
-on quality glossy paper because it is quite small. Using this, it was not hard to implement different OpenCL API calls.
-NB: It is worth noting that in 2020 the specification for OpenCL 3.0 came out. This project was written in OpenCL 1.2,
-which is the core on which OpenCL 3.0 is based. This code has been tested and will run using OpenCL 1.2 or with OpenCL 3.0
-when using compliant GPU hardware if you wish, where CLang compilers are reccomended by 3rd parties.
-Read more about OpenCL 3.0 here: https://www.khronos.org/news/press/khronos-group-releases-opencl-3.0 
-There is a working group that also guides the development of OpenCL (and SYCL):
-https://www.iwocl.org/ 
+* The OpenCL specification is managed by Khronos Group. Khronos.org is an organisation of representatives
+from many interested parties. Their homepage is here: 
+https://www.khronos.org/ 
+* The OpenCL registry homepage is here: https://www.khronos.org/registry/OpenCL/ 
+* You can also download the specifications for OpenCL versions from that page. I printed out the OpenCL 1.2 version
+  on quality glossy paper because it is quite small. Using this, it was not hard to implement different OpenCL API calls.
+  NB: It is worth noting that in 2020 the specification for OpenCL 3.0 came out. This project was written in OpenCL 1.2,
+  which is the core on which OpenCL 3.0 is based. This code has been tested and will run using OpenCL 1.2 or with OpenCL 3.0
+  when using compliant GPU hardware if you wish, where CLang compilers are reccomended by 3rd parties.
+* Read more about OpenCL 3.0 here: https://www.khronos.org/news/press/khronos-group-releases-opencl-3.0 
+* There is a working group that also guides the development of OpenCL (and SYCL):
+  https://www.iwocl.org/ 
 
 ## Vulkan
 Vulkan is a new graphics api developed by AMD and Khronos Group. At the time of the early commits, my understanding was 
