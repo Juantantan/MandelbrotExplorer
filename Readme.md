@@ -135,12 +135,12 @@ The project requires the following libraries/source/headers:
 * OpenCL - For Compute operations (may already be present by default on Linux / Mac OS)
 * SDL2 - For user / screen interaction (requires runtime library install and header)
   https://www.libsdl.org/
-  (SDL2 is just one of several possible 3rd party interactive layers you could use. This code does require it but could
+  SDL2 is just one of several possible 3rd party interactive layers you could use. This code does require it but could
   be modified to work with different UI libraries, such as glfw, as mentioned previously.
 * SDL2_Image (optional) - For working with physical image files (requires header file include). 
   NB: This is not required unless physical images are being created from the raw image data, as in the oiriginal code.
 * glu.h - OpenGL helper header file. (Usually already present in the include/GL folder)
-  Installing these 3rd party dibraries will be different on different platforms. In Windows there is an SDK which can be
+  Installing these 3rd party libraries will be different on different platforms. In Windows there is an SDK which can be
   installed but this may exist already on your machine in the other OS's. You can often find the open source header files
   offered on their own or as part of other open source offerings.
 
@@ -149,10 +149,10 @@ The OpenCL specification is managed by Khronos Group. Khronos.org is an organisa
 from many interested parties. Their homepage is here: https://www.khronos.org/
 The OpenCL registry homepage is here: https://www.khronos.org/registry/OpenCL/
 You can also download the specifications for OpenCL versions from that page. I printed out the OpenCL 1.2 version
-on nice photo quality glossy paper. Using this, it was not hard to implement different OpenCL API calls.
-NB: It is worth noting that in 2020 the specification for OpenCL 3.0 came out. This project was written
-in OpenCL 1.2, which is the core on which OpenCL 3.0 is based. This code has been tested and will run using OpenCL 1.2 or
-with OpenCL 3.0 when using compliant GPU hardware if you wish, where CLang compilers are reccomended by 3rd parties.
+on quality glossy paper because it is quite small. Using this, it was not hard to implement different OpenCL API calls.
+NB: It is worth noting that in 2020 the specification for OpenCL 3.0 came out. This project was written in OpenCL 1.2,
+which is the core on which OpenCL 3.0 is based. This code has been tested and will run using OpenCL 1.2 or with OpenCL 3.0
+when using compliant GPU hardware if you wish, where CLang compilers are reccomended by 3rd parties.
 Read more about OpenCL 3.0 here: https://www.khronos.org/news/press/khronos-group-releases-opencl-3.0
 There is a working group that also guides the development of OpenCL (and SYCL):
 https://www.iwocl.org/
@@ -179,10 +179,11 @@ SDL2 and SDL_Image are made available under the zlib license: https://www.zlib.n
 OpenCL / OpenGL: OpenCL and OpenGL are by definition open source. However, graphics rendering / compute OpenCL capable
 hardware vendors generally have their own proprietory implementations and drivers. This means that for OpenCL and OpenGL
 to work with your hardware, you will often need to install graphics drivers for your OS and hardware (GPU / CPU)
-You will likely already have these installed on your machine with your graphics driver vendor implementation.
-Apart from the proprietory drivers, the OpenCL/OpenGL open source core header files can often be obtained independently
-from the hardware vendors, if desired. Khronos Group were at the time of writing, building an OpenCL SDK in GitHUb:
+You will likely already have these present on your machine from your GPU vendor's driver install.
+Apart from the proprietory drivers, the OpenCL/OpenGL open source core header files can often be obtained independently,
+if desired. Khronos Group are at the time of writing (2025), continuing to update their own OpenCL SDK in GitHUb:
 https://github.com/KhronosGroup/OpenCL-SDK. This is offered under the Apache 2.0 license.
+This brings a lot of the necessary files into one place.
 
 
 ## Extensions for VS code
