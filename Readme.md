@@ -124,15 +124,15 @@ which work on this project in linux on my machine.
 
 ## Compiler 
 Here are some general instructions from the Visual Studio Code website for setting these up for your local
-deployment using the GNU compiler / debugger (gdb/gcc) or CLang (probably best Mac and/or with OpenCL V 3.0):
+deployment using the GNU compiler / debugger (gdb/gcc) or CLang (probably the best Mac option) with OpenCL V 3.0:
 * Windows (with MinGW/MinGW-w64 & gdb)  : https://code.visualstudio.com/docs/cpp/config-mingw
 * Linux (with gdb)                      : https://code.visualstudio.com/docs/cpp/config-linux
 * Mac/OSX (with CLang compiler)         : https://code.visualstudio.com/docs/cpp/config-clang-mac
 
 ## 3rd party requirements 
 The project requires the following libraries/source/headers:
-* OpenGL - Graphics rendering (may already be present by default on Linux and/or Mac OS)
-* OpenCL - For Compute operations (may already be present by default on Linux and/or Mac OS)
+* OpenGL - Graphics rendering (may already be present by default on Linux / Mac OS)
+* OpenCL - For Compute operations (may already be present by default on Linux / Mac OS)
 * SDL2 - For user / screen interaction (requires runtime library install and header)
   https://www.libsdl.org/
   (SDL2 is just one of several possible 3rd party interactive layers you could use. This code does require it but could
