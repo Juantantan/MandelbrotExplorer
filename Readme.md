@@ -92,9 +92,9 @@ offered just to help people to get started without too much fuss.
 'main.cpp' is a standard C++ file and 'mandel.cl' is an OpenCL kernel format file, which can be modified by the user
 using a standard text editor to alter rendering speed, fractal appearance and complexity. OpenCL is very much a version of
 'C', so shouldn't present too much of a problem when experimenting, The kernel performs all the parallel iteration sets
-of the Mandelbrot algorithm. The kernel is written to the Grpahics hardware at compilation time and returns complete
+of the Mandelbrot algorithm. The kernel is written to the graphics hardware at compilation time and returns complete
 fractal RGBA pixel image maps at each rendition at runtime: on program start and at each mouse-click (zoom in / zoom out)
-performed by the user, via the SDL2 API. The zoom code needs work...
+event performed by the user, via the SDL2 API. The zoom code needs work...
 
 NB: The kernel ('mandel.cl') has a lot of room for improvisation and is by no means the most efficient code to perform
 pixel colouring functions to produce image maps. In particular, the colour banding and blending is clunky and slower
@@ -102,16 +102,19 @@ than it could be. The same goes for the interactive navigation code in SDL2. The
 probably overly complicated and inefficient. Anyone who is interested is encouraged to improve upon it in their own code
 and to offer suggestions for this codebase. It would be good to see that part improved upon and simplified. It seems that
 this SDL code doesn't even centre correctly, so I may have messed up at some point, before commiting the repo initially.
+On top of this, the floating point values aren't correctly adjusted (scaled) as magnification increases and the colours 
+often converge to just two tones. Sorting out zooming and colouring is the next step in improving this software.
 
 What the software does provide is a tried and tested base from which mandelbrot exploration can be done without having to
 worry about setting up an environment and writing all the bolier-plate code from scratch. It took me months to get the
-first basic OpenCL version working many years ago, and only via the eventual use of Eric Bainville's code, Hopefully the
-code and info here and on Eric's homepage can help people avoid some of the hassle of going through that, to get started. 
+first basic OpenCL version working many years ago, and only via the eventual use of Eric Bainville's code, after which
+thngs sped up a lot. Hopefully the code and info here and on Eric's homepage can help people avoid some of the hassle of
+going through that, to get started. 
 
 The program could equally be run and compiled at the command line without an IDE but the extensions for VS Code make it
-very easy to see what's going on during compilation using that, especillay when debugging. If running with the command
-prompt, linker flags will need to be set correctly. On linux, the following should work. 
-(You might have to preceed with the admin 'sudo' command, depending on your setup):
+very easy to see what's going on during compilation using VS Code, especillay when debugging. If running with the command
+prompt, linker flags will need to be set correctly. On linux, the following should work. (You might have to preceed with
+the admin 'sudo' command, depending on your setup):
 
 g++ main.cpp -Wall -lSDL2main -lSDL2 -lSDL2_image -lGL -lGLU -lglut -lOpenCL -o ../bin/main.out
 
